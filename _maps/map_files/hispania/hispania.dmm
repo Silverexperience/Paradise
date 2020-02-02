@@ -8810,8 +8810,9 @@
 	},
 /area/security/warden)
 "apk" = (
-/obj/machinery/computer/security{
-	network = list("SS13","Research Outpost","Mining Outpost")
+/obj/machinery/computer/camera_advanced{
+	step_x = 0;
+	step_y = 0
 	},
 /turf/simulated/floor/plasteel{
 	dir = 6;
