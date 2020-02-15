@@ -68958,6 +68958,7 @@
 	level = 1
 	},
 /obj/machinery/hologram/holopad,
+/mob/living/simple_animal/pet/dog/pug/unfunny,
 /turf/simulated/floor/plasteel{
 	icon_state = "white"
 	},
