@@ -1186,6 +1186,7 @@
 #include "code\HISPANIA\game\objects\structures\femur_breaker.dm"
 #include "code\HISPANIA\game\objects\structures\spawner.dm"
 #include "code\HISPANIA\game\objects\structures\crates_lockers\closets\cardboardcham.dm"
+#include "code\HISPANIA\game\objects\structures\crates_lockers\closets\hydroponics.dm"
 #include "code\HISPANIA\game\objects\structures\crates_lockers\closets\secure\cargo.dm"
 #include "code\HISPANIA\game\objects\structures\crates_lockers\closets\secure\engineering.dm"
 #include "code\HISPANIA\game\objects\structures\crates_lockers\closets\secure\scientist.dm"
