@@ -763,14 +763,3 @@
 				for(var/i in list(1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2))
 					dir = i
 					sleep(1)
-
-/mob/living/simple_animal/pet/dog/pug/unfunny
-	name = "\improper Vulcano"
-	real_name = "Vulcano"
-	desc = "The garbage pet, a lost brother of Ian."
-	icon = 'icons/mob/pets.dmi'
-	icon_state = "pug"
-	icon_living = "pug"
-	icon_dead = "pug_dead"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/pug = 3)
-	collar_type = "pug"
