@@ -1,3 +1,7 @@
+#define isrevenant(A) (istype(A, /mob/living/simple_animal/revenant))
+#define isrune(A) (istype(A, /obj/effect/rune))
+#define adjustessence(A) (istype(A, /obj/effect/rune))
+
 /obj/item/nullrod/armblade/unholy_blessing
 	name = "unholy blessing"
 	icon_state = "tentacle"
@@ -19,15 +23,15 @@
 
 /obj/item/nullrod/hammmer/pride_hammer
 	name = "pride-struck Hammer"
-	desc = "It resonates an aura of Pride."
+	desc = "A cursed hammer, which can only damage when you throw it."
 	icon = 'icons/hispania/obj/weapons.dmi'
 	icon_state = "pride"
 	item_state = "pride"
 	slot_flags = SLOT_BELT
 	lefthand_file = 'icons/hispania/mob/inhands/weapons_lefthand.dmi'
 	righthand_file = 'icons/hispania/mob/inhands/weapons_righthand.dmi'
-	force = 9
-	throwforce = 20
+	force = 3
+	throwforce = 25
 
 /obj/item/nullrod/holy_tarot
 	name = "a holy tarot card"
@@ -39,7 +43,7 @@
 	force = 0
 	throwforce = 0
 	var/used = FALSE
-	var/confirmation_message = "The card are still unused. Do you wish to use it?"
+	var/confirmation_message = "The card is still unused. Do you wish to use it?"
 	var/use_message = "You use the card"
 	var/used_message = "The cards seem to be unpower for now."
 	var/failure_message = "The cards seem to be unpower for now."
@@ -115,7 +119,7 @@
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	obj_damage = 0
-	damage_transfer = 0.4
+	damage_transfer = 0.2
 	attacktext = "heals"
 	friendly = "heals"
 	a_intent = INTENT_HELP
@@ -123,28 +127,36 @@
 	icon_living = "holy_guardian"
 	icon_state = "holy_guardian"
 	icon_dead = "holy_guardian"
-	playstyle_string = "As a <b>Holy</b> type you have a high damage resistance but you don't have damage habilities, only healing powers with little consequences."
-	magic_fluff_string = "You feel the power of the gods filling your blood."
+	playstyle_string = "As a <b> Holy </b> type, you can erase cult runes and have high damage resistance, but you only have damage abilities for revenants, for others you have healing powers if they are blessed by your summoner with little consequence."
+	magic_fluff_string = "You feel the power of gods filling your blood."
 	tech_fluff_string = "This is a error. If you report this I'll agree whit you for eternity."
 	bio_fluff_string = "This is a error. If you report this I'll agree whit you for eternity."
 	var/heal_cooldown = 0
 
 /mob/living/simple_animal/hostile/guardian/holy/AttackingTarget()
 	. = ..()
+	var/mob/living/C = target
+	if(isrevenant(C))
+		to_chat(src,"<span class='danger'>You steal part of the revenant soul.</span>")
+		C.adjustBruteLoss(25)
+		return
+	if(isrune(C))
+		to_chat(src,"<span class='danger'>You disrupt the cult magic.</span>")
+		qdel(target)
+		return
 	if(loc == summoner)
 		to_chat(src, "<span class='danger'>You must be manifested to heal!</span>")
 		return
-	if(iscarbon(target))
-		changeNext_move(CLICK_CD_MELEE)
-		var/mob/living/carbon/C = target
-		if(C == summoner)
-			to_chat(src, "<span class='danger'>You cant heal your summoner</span>")
-			return
-		if(heal_cooldown <= world.time && !stat)
+	if(iscarbon(C))
+		if(C.mind.isblessed)
+			changeNext_move(CLICK_CD_MELEE)
+			if(C == summoner)
+				to_chat(src, "<span class='danger'>You cant heal your summoner</span>")
+				return
+			if(heal_cooldown <= world.time && !stat)
 				C.adjustBruteLoss(-5, robotic=1)
 				C.adjustFireLoss(-5, robotic=1)
 				C.adjustOxyLoss(-5)
 				C.adjustToxLoss(-5)
-				C.adjustBrainLoss(15)
-				heal_cooldown = world.time + 20			
-				to_chat(src, "<span class='danger'>You cant heal your summoner</span>")
+				C.adjustBrainLoss(5)
+				heal_cooldown = world.time + 40
