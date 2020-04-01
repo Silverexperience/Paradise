@@ -5,7 +5,6 @@
 	desc = "A tentacle made by ancient dark gods."
 	hitsound = 'sound/effects/splat.ogg'
 	sharp = 0
-	force = 10
 
 /obj/item/nullrod/egyptian
 	name = "egyptian staff"
@@ -24,6 +23,7 @@
 	icon = 'icons/hispania/obj/weapons.dmi'
 	icon_state = "pride"
 	item_state = "pride"
+	slot_flags = SLOT_BELT
 	lefthand_file = 'icons/hispania/mob/inhands/weapons_lefthand.dmi'
 	righthand_file = 'icons/hispania/mob/inhands/weapons_righthand.dmi'
 	force = 9
