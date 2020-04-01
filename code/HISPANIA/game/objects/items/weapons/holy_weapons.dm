@@ -136,13 +136,15 @@
 		return
 	if(iscarbon(target))
 		changeNext_move(CLICK_CD_MELEE)
+		var/mob/living/carbon/C = target
+		if(C == summoner)
+			to_chat(src, "<span class='danger'>You cant heal your summoner</span>")
+			return
 		if(heal_cooldown <= world.time && !stat)
-			var/mob/living/carbon/C = target
-			C.adjustBruteLoss(-5, robotic=1)
-			C.adjustFireLoss(-5, robotic=1)
-			C.adjustOxyLoss(-5)
-			C.adjustToxLoss(-5)
-			C.adjustBrainLoss(15)
-			heal_cooldown = world.time + 20
-			if(C == summoner)
+				C.adjustBruteLoss(-5, robotic=1)
+				C.adjustFireLoss(-5, robotic=1)
+				C.adjustOxyLoss(-5)
+				C.adjustToxLoss(-5)
+				C.adjustBrainLoss(15)
+				heal_cooldown = world.time + 20			
 				to_chat(src, "<span class='danger'>You cant heal your summoner</span>")
