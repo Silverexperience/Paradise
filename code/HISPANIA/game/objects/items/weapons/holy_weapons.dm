@@ -1,7 +1,3 @@
-#define isrevenant(A) (istype(A, /mob/living/simple_animal/revenant))
-#define isrune(A) (istype(A, /obj/effect/rune))
-#define adjustessence(A) (istype(A, /obj/effect/rune))
-
 /obj/item/nullrod/armblade/unholy_blessing
 	name = "unholy blessing"
 	icon_state = "tentacle"
