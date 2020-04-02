@@ -89,14 +89,15 @@
 	melee_damage_upper = 0
 	obj_damage = 0
 	damage_transfer = 0.2
-	attacktext = "heals"
-	friendly = "heals"
+	range = 5
+	attacktext = "bless"
+	friendly = "bless"
 	a_intent = INTENT_HELP
 	icon = 'icons/hispania/obj/holy_tarot.dmi'
 	icon_living = "holy_guardian"
 	icon_state = "holy_guardian"
 	icon_dead = "holy_guardian"
-	playstyle_string = "As a <b> Holy </b> type, you can erase cult runes and have high damage resistance, but you only have damage abilities for revenants, for others you have healing powers if they are blessed by your summoner with little consequence."
+	playstyle_string = "As a <b> Holy </b> type, you can erase cult runes, bless the water, and have high damage resistance, but you only have damage abilities for revenants and vampires and you also have less range than other guardians."
 	magic_fluff_string = "You feel the power of gods filling your blood."
 	tech_fluff_string = "This is a error. If you report this I'll agree whit you for eternity."
 	bio_fluff_string = "This is a error. If you report this I'll agree whit you for eternity."
@@ -113,19 +114,20 @@
 		to_chat(src,"<span class='danger'>You disrupt the cult magic.</span>")
 		qdel(target)
 		return
-	if(loc == summoner)
-		to_chat(src, "<span class='danger'>You must be manifested to heal!</span>")
-		return
 	if(iscarbon(C))
+		if(C.mind.vampire)
+			to_chat(src,"<span class='danger'>You bless they unholy soul.</span>")
+			C.adjustBruteLoss(10)
+			C.adjustFireLoss(5)
 		if(C.mind.isblessed)
-			changeNext_move(CLICK_CD_MELEE)
-			if(C == summoner)
-				to_chat(src, "<span class='danger'>You cant heal your summoner</span>")
-				return
-			if(heal_cooldown <= world.time && !stat)
-				C.adjustBruteLoss(-5, robotic=1)
-				C.adjustFireLoss(-5, robotic=1)
-				C.adjustOxyLoss(-5)
-				C.adjustToxLoss(-5)
-				C.adjustBrainLoss(5)
-				heal_cooldown = world.time + 40
+			to_chat(src,"<span class='danger'>You feel God with him.</span>")
+	if(C.reagents && C.reagents.has_reagent("water"))
+		to_chat(src, "<span class='notice'>You bless [C].</span>")
+		var/water2holy = C.reagents.get_reagent_amount("water")
+		C.reagents.del_reagent("water")
+		C.reagents.add_reagent("holywater",water2holy)
+	if(C.reagents && C.reagents.has_reagent("unholywater"))
+		to_chat(src, "<span class='notice'>You purify [C].</span>")
+		var/unholy2clean = C.reagents.get_reagent_amount("unholywater")
+		C.reagents.del_reagent("unholywater")
+		C.reagents.add_reagent("holywater",unholy2clean)
