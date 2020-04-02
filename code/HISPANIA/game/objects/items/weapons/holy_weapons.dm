@@ -161,4 +161,4 @@
 				C.adjustBrainLoss(5)
 				heal_cooldown = world.time + 40
 		else
-			to_chat(src, "<span class='danger'>You cant heal a not bleessing [C.specie]</span>")
+			to_chat(src, "<span class='danger'>You cant heal a not bleessing</span>")
