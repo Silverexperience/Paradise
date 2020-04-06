@@ -24,7 +24,7 @@
 	density = 1
 	max_integrity = 300
 	integrity_failure = 100
-	armor = list(melee = 20, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 20, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 70)
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
 
@@ -213,16 +213,6 @@
 		var/datum/data/vending_product/record = R
 		.[record.product_path] += record.amount
 
-/obj/machinery/vending/ex_act(severity) //TO-DO-OBJECT-DAMAGE: Kill off when everything is damageable
-	switch(severity)
-		if(1)
-			obj_integrity = 0
-			qdel(src)
-		if(2)
-			take_damage(rand(100, 250), BRUTE, "bomb", 0)
-		if(3)
-			take_damage(rand(10, 90), BRUTE, "bomb", 0)
-
 /obj/machinery/vending/deconstruct(disassembled = TRUE)
 	eject_item()
 	if(!refill_canister) //the non constructable vendors drop metal instead of a machine frame.
@@ -231,11 +221,8 @@
 	else
 		..()
 
-/obj/machinery/vending/blob_act(obj/structure/blob/B) //TO-DO-OBJECT-DAMAGE: Kill off when everything is damageable
-	take_damage(400, BRUTE, "melee", 0, get_dir(src, B))
-
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
-	if(currently_vending && vendor_account && !vendor_account.suspended)
+	if(currently_vending && GLOB.vendor_account && !GLOB.vendor_account.suspended)
 		var/paid = 0
 		var/handled = 0
 		if(istype(I, /obj/item/card/id))
@@ -259,25 +246,6 @@
 			SSnanoui.update_uis(src)
 			return // don't smack that machine with your 2 thalers
 
-	if(default_unfasten_wrench(user, I, time = 60))
-		return
-
-	if(isscrewdriver(I) && anchored)
-		playsound(loc, I.usesound, 50, 1)
-		panel_open = !panel_open
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
-		overlays.Cut()
-		if(panel_open)
-			overlays += image(icon, "[initial(icon_state)]-panel")
-		SSnanoui.update_uis(src)  // Speaker switch is on the main UI, not wires UI
-		return
-
-	if(panel_open)
-		if(ismultitool(I) || iswirecutter(I))
-			return attack_hand(user)
-		if(component_parts && iscrowbar(I))
-			default_deconstruction_crowbar(I)
-			return
 	if(istype(I, /obj/item/coin) && premium.len)
 		if(!user.drop_item())
 			return
@@ -309,6 +277,45 @@
 		return
 	return ..()
 
+
+
+/obj/machinery/vending/crowbar_act(mob/user, obj/item/I)
+	if(!component_parts)
+		return
+	. = TRUE
+	default_deconstruction_crowbar(user, I)
+
+/obj/machinery/vending/multitool_act(mob/user, obj/item/I)
+	. = TRUE
+	if(!I.use_tool(src, user, 0, volume = I.tool_volume))
+		return
+	wires.Interact(user)
+
+/obj/machinery/vending/screwdriver_act(mob/user, obj/item/I)
+	. = TRUE
+	if(!I.use_tool(src, user, 0, volume = I.tool_volume))
+		return
+	if(anchored)
+		panel_open = !panel_open
+		if(panel_open)
+			SCREWDRIVER_OPEN_PANEL_MESSAGE
+			overlays += image(icon, "[initial(icon_state)]-panel")
+		else
+			SCREWDRIVER_CLOSE_PANEL_MESSAGE
+			overlays.Cut()
+		SSnanoui.update_uis(src)  // Speaker switch is on the main UI, not wires UI
+
+/obj/machinery/vending/wirecutter_act(mob/user, obj/item/I)
+	. = TRUE
+	if(I.use_tool(src, user, 0, volume = 0))
+		wires.Interact(user)
+
+/obj/machinery/vending/wrench_act(mob/user, obj/item/I)
+	. = TRUE
+	if(!I.use_tool(src, user, 0, volume = 0))
+		return
+	default_unfasten_wrench(user, I, time = 60)
+
 //Override this proc to do per-machine checks on the inserted item, but remember to call the parent to handle these generic checks before your logic!
 /obj/machinery/vending/proc/item_slot_check(mob/user, obj/item/I)
 	if(!item_slot)
@@ -339,12 +346,12 @@
 	var/moved = 0
 	if(panel_open || W.works_from_distance)
 		if(W.works_from_distance)
-			display_parts(user)
+			to_chat(user, display_parts(user))
 		for(var/I in W)
 			if(istype(I, refill_canister))
 				moved += restock(I)
 	else
-		display_parts(user)
+		to_chat(user, display_parts(user))
 	if(moved)
 		to_chat(user, "[moved] items restocked.")
 		W.play_rped_sound()
@@ -445,8 +452,8 @@
 		return 0
 	else
 		// Okay to move the money at this point
-		var/paid = customer_account.charge(currently_vending.price, vendor_account,
-			"Purchase of [currently_vending.name]", name, vendor_account.owner_name,
+		var/paid = customer_account.charge(currently_vending.price, GLOB.vendor_account,
+			"Purchase of [currently_vending.name]", name, GLOB.vendor_account.owner_name,
 			"Sale of [currently_vending.name]", customer_account.owner_name)
 
 		if(paid)
@@ -462,8 +469,8 @@
  *  Called after the money has already been taken from the customer.
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
-	vendor_account.money += currently_vending.price
-	vendor_account.credit(currently_vending.price, "Sale of [currently_vending.name]",
+	GLOB.vendor_account.money += currently_vending.price
+	GLOB.vendor_account.credit(currently_vending.price, "Sale of [currently_vending.name]",
 	name, target)
 
 /obj/machinery/vending/attack_ai(mob/user)
@@ -496,7 +503,7 @@
 		ui = new(user, src, ui_key, "vending_machine.tmpl", src.name, 440, 600)
 		ui.open()
 
-/obj/machinery/vending/ui_data(mob/user, ui_key = "main", datum/topic_state/state = default_state)
+/obj/machinery/vending/ui_data(mob/user, ui_key = "main", datum/topic_state/state = GLOB.default_state)
 	var/list/data = list()
 	if(currently_vending)
 		data["mode"] = 1
@@ -566,7 +573,7 @@
 		eject_item(usr)
 
 	if(href_list["pay"])
-		if(currently_vending && vendor_account && !vendor_account.suspended)
+		if(currently_vending && GLOB.vendor_account && !GLOB.vendor_account.suspended)
 			var/paid = 0
 			var/handled = 0
 			var/datum/money_account/A = usr.get_worn_id_account()
@@ -614,7 +621,7 @@
 			vend(R, usr)
 		else
 			currently_vending = R
-			if(!vendor_account || vendor_account.suspended)
+			if(!GLOB.vendor_account || GLOB.vendor_account.suspended)
 				status_message = "This machine is currently unable to process payments due to problems with the associated account."
 				status_error = 1
 			else
@@ -763,7 +770,7 @@
 					continue
 
 				var/obj/O = new dump_path(loc)
-				step(O, pick(alldirs))
+				step(O, pick(GLOB.alldirs))
 				found_anything = TRUE
 				dump_amount++
 				if(dump_amount >= 16)
@@ -847,6 +854,7 @@
 					/obj/item/reagent_containers/food/drinks/bottle/whiskey = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/tequila = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/mezcal = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/fernet = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/vermouth = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/rum = 5,
@@ -874,7 +882,7 @@
 	refill_canister = /obj/item/vending_refill/boozeomat
 
 /obj/machinery/vending/boozeomat/syndicate_access
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/vending/boozeomat/Initialize(mapload)
 	component_parts = list()
@@ -1072,7 +1080,8 @@
 					/obj/item/gun/projectile/shotgun = 2,/obj/item/gun/projectile/automatic/ar = 2)
 	premium = list(/obj/item/ammo_box/magazine/smgm9mm = 2,/obj/item/ammo_box/magazine/m50 = 4,/obj/item/ammo_box/magazine/m45 = 2,/obj/item/ammo_box/magazine/m75 = 2)
 	contraband = list(/obj/item/clothing/under/patriotsuit = 1,/obj/item/bedsheet/patriot = 3)
-	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
+	resistance_flags = FIRE_PROOF
 
 
 /obj/machinery/vending/toyliberationstation
@@ -1099,7 +1108,8 @@
 					  /obj/item/toy/katana = 10,
 					  /obj/item/twohanded/dualsaber/toy = 5,
 					  /obj/item/toy/cards/deck/syndicate = 10) //Gambling and it hurts, making it a +18 item
-	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
+	resistance_flags = FIRE_PROOF
 
 /obj/machinery/vending/cigarette
 	name = "cigarette machine"
@@ -1108,10 +1118,10 @@
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
 	vend_delay = 34
 	icon_state = "cigs"
-	products = list(/obj/item/storage/fancy/cigarettes = 5,/obj/item/storage/fancy/cigarettes/cigpack_uplift = 3,/obj/item/storage/fancy/cigarettes/cigpack_robust = 2,/obj/item/storage/fancy/cigarettes/cigpack_carp = 3,/obj/item/storage/fancy/cigarettes/cigpack_midori = 1,/obj/item/storage/fancy/cigarettes/cigpack_random = 2, /obj/item/reagent_containers/food/pill/patch/nicotine = 10, /obj/item/storage/box/matches = 10,/obj/item/lighter/random = 4,/obj/item/storage/fancy/rollingpapers = 5)
+	products = list(/obj/item/storage/fancy/cigarettes/cigpack_robust = 12, /obj/item/storage/fancy/cigarettes/cigpack_uplift = 6, /obj/item/storage/fancy/cigarettes/cigpack_random = 6, /obj/item/reagent_containers/food/pill/patch/nicotine = 10, /obj/item/storage/box/matches = 10,/obj/item/lighter/random = 4,/obj/item/storage/fancy/rollingpapers = 5)
 	contraband = list(/obj/item/lighter/zippo = 4)
-	premium = list(/obj/item/clothing/mask/cigarette/cigar/havana = 2,/obj/item/storage/fancy/cigarettes/cigpack_robustgold = 1)
-	prices = list(/obj/item/storage/fancy/cigarettes = 60,/obj/item/storage/fancy/cigarettes/cigpack_uplift = 60,/obj/item/storage/fancy/cigarettes/cigpack_robust = 60,/obj/item/storage/fancy/cigarettes/cigpack_carp = 60,/obj/item/storage/fancy/cigarettes/cigpack_midori = 60,/obj/item/storage/fancy/cigarettes/cigpack_random = 150, /obj/item/reagent_containers/food/pill/patch/nicotine = 15, /obj/item/storage/box/matches = 10,/obj/item/lighter/random = 60, /obj/item/storage/fancy/rollingpapers = 20)
+	premium = list(/obj/item/clothing/mask/cigarette/cigar/havana = 2, /obj/item/storage/fancy/cigarettes/cigpack_robustgold = 1)
+	prices = list(/obj/item/storage/fancy/cigarettes/cigpack_robust = 60, /obj/item/storage/fancy/cigarettes/cigpack_uplift = 80, /obj/item/storage/fancy/cigarettes/cigpack_random = 120, /obj/item/reagent_containers/food/pill/patch/nicotine = 70, /obj/item/storage/box/matches = 10,/obj/item/lighter/random = 60, /obj/item/storage/fancy/rollingpapers = 20)
 	refill_canister = /obj/item/vending_refill/cigarette
 
 /obj/machinery/vending/cigarette/free
@@ -1169,17 +1179,18 @@
 					/obj/item/reagent_containers/glass/bottle/salicylic = 4, /obj/item/reagent_containers/glass/bottle/potassium_iodide =3, /obj/item/reagent_containers/glass/bottle/saline = 5,
 					/obj/item/reagent_containers/glass/bottle/morphine = 4, /obj/item/reagent_containers/glass/bottle/ether = 4, /obj/item/reagent_containers/glass/bottle/atropine = 3,
 					/obj/item/reagent_containers/glass/bottle/oculine = 2, /obj/item/reagent_containers/glass/bottle/toxin = 4, /obj/item/reagent_containers/syringe/antiviral = 6,
-					/obj/item/reagent_containers/syringe/insulin = 6, /obj/item/reagent_containers/syringe/calomel = 10, /obj/item/reagent_containers/hypospray/autoinjector = 5, /obj/item/reagent_containers/food/pill/salbutamol = 10,
+					/obj/item/reagent_containers/syringe/insulin = 6, /obj/item/reagent_containers/syringe/calomel = 10, /obj/item/reagent_containers/syringe/heparin = 4, /obj/item/reagent_containers/hypospray/autoinjector = 5, /obj/item/reagent_containers/food/pill/salbutamol = 10,
 					/obj/item/reagent_containers/food/pill/mannitol = 10, /obj/item/reagent_containers/food/pill/mutadone = 5, /obj/item/stack/medical/bruise_pack/advanced = 4, /obj/item/stack/medical/ointment/advanced = 4, /obj/item/stack/medical/bruise_pack = 4,
 					/obj/item/stack/medical/splint = 4, /obj/item/reagent_containers/glass/beaker = 4, /obj/item/reagent_containers/dropper = 4, /obj/item/healthanalyzer = 4,
 					/obj/item/healthupgrade = 4, /obj/item/reagent_containers/hypospray/safety = 2, /obj/item/sensor_device = 2, /obj/item/pinpointer/crew = 2)
 	contraband = list(/obj/item/reagent_containers/glass/bottle/sulfonal = 1, /obj/item/reagent_containers/glass/bottle/pancuronium = 1)
-	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
+	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/medical
 
 /obj/machinery/vending/medical/syndicate_access
 	name = "\improper SyndiMed Plus"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/vending/medical/Initialize(mapload)
 	component_parts = list()
@@ -1203,11 +1214,12 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
-	req_access = list(access_medical)
+	///req_access = list(access_medical)
 	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2, /obj/item/stack/medical/ointment = 2, /obj/item/reagent_containers/hypospray/autoinjector = 4, /obj/item/healthanalyzer = 1)
 	contraband = list(/obj/item/reagent_containers/syringe/charcoal = 4, /obj/item/reagent_containers/syringe/antiviral = 4, /obj/item/reagent_containers/food/pill/tox = 1)
-	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
+	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/wallmed
 
 /obj/machinery/vending/wallmed/Initialize(mapload)
@@ -1236,9 +1248,9 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access_txt = "1"
-	products = list(/obj/item/restraints/handcuffs = 8,/obj/item/restraints/handcuffs/cable/zipties = 8,/obj/item/grenade/flashbang = 4,/obj/item/flash = 5,
-					/obj/item/reagent_containers/food/snacks/donut = 12,/obj/item/storage/box/evidence = 6,/obj/item/flashlight/seclite = 4,/obj/item/restraints/legcuffs/bola/energy = 7,
-					/obj/item/clothing/mask/muzzle/safety = 4)
+	products = list(/obj/item/restraints/handcuffs = 12,/obj/item/grenade/flashbang = 8,/obj/item/flash = 5,
+					/obj/item/reagent_containers/food/snacks/donut = 12,/obj/item/taperoll/police = 8,/obj/item/storage/box/evidence = 6,/obj/item/flashlight/seclite = 5,/obj/item/restraints/legcuffs/bola/energy = 10,
+					/obj/item/clothing/mask/muzzle/safety = 5, /obj/item/device/binoculars/security = 2)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,/obj/item/storage/fancy/donut_box = 2,/obj/item/hailer = 5)
 	refill_canister = /obj/item/vending_refill/security
 
@@ -1280,8 +1292,8 @@
 	icon_state = "seeds"
 	products = list(/obj/item/seeds/aloe =3,
 					/obj/item/seeds/ambrosia = 3,
-					/obj/item/seeds/apple = 3, 
-					/obj/item/seeds/banana = 3, 
+					/obj/item/seeds/apple = 3,
+					/obj/item/seeds/banana = 3,
 					/obj/item/seeds/berry = 3,
 					/obj/item/seeds/cabbage = 3,
 					/obj/item/seeds/carrot = 3,
@@ -1322,6 +1334,7 @@
 					/obj/item/seeds/fungus = 3)
 	contraband = list(/obj/item/seeds/cannabis = 3,
 					  /obj/item/seeds/amanita = 2,
+					  /obj/item/seeds/glowshroom = 2,
 					  /obj/item/seeds/liberty = 2,
 					  /obj/item/seeds/nettle = 2,
 					  /obj/item/seeds/plump = 2,
@@ -1360,7 +1373,8 @@
 					/obj/item/clothing/shoes/clown_shoes/magical = 1,
 					/obj/item/twohanded/staff = 2)
 	contraband = list(/obj/item/reagent_containers/glass/bottle/wizarditis = 1)
-	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
+	resistance_flags = FIRE_PROOF
 
 /obj/machinery/vending/autodrobe
 	name = "\improper AutoDrobe"
@@ -1544,6 +1558,7 @@
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30)
 	contraband = list(/obj/item/reagent_containers/food/drinks/drinkingglass/cola = 20)
+	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/sovietsoda
 
 /obj/machinery/vending/sovietsoda/Initialize(mapload)
@@ -1562,10 +1577,11 @@
 	icon_deny = "tool-deny"
 	//req_access_txt = "12" //Maintenance access
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/crowbar = 5,/obj/item/weldingtool = 3,/obj/item/wirecutters = 5,
-					/obj/item/wrench = 5,/obj/item/analyzer = 5,/obj/item/t_scanner = 5,/obj/item/screwdriver = 5)
+					/obj/item/wrench = 5,/obj/item/analyzer = 5,/obj/item/t_scanner = 5,/obj/item/screwdriver = 5,/obj/item/taperoll/engineering = 10)
 	contraband = list(/obj/item/weldingtool/hugetank = 2,/obj/item/clothing/gloves/color/fyellow = 2)
 	premium = list(/obj/item/clothing/gloves/color/yellow = 1)
-	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 70)
+	resistance_flags = FIRE_PROOF
 
 /obj/machinery/vending/engivend
 	name = "\improper Engi-Vend"
@@ -1598,7 +1614,7 @@
 					/obj/item/crowbar = 12,/obj/item/wirecutters = 12,/obj/item/multitool = 12,/obj/item/wrench = 12,/obj/item/t_scanner = 12,
 					/obj/item/stack/cable_coil/heavyduty = 8, /obj/item/stock_parts/cell = 8, /obj/item/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/light/tube = 10,/obj/item/clothing/suit/fire = 4, /obj/item/stock_parts/scanning_module = 5,/obj/item/stock_parts/micro_laser = 5,
-					/obj/item/stock_parts/matter_bin = 5,/obj/item/stock_parts/manipulator = 5,/obj/item/stock_parts/console_screen = 5)
+					/obj/item/stock_parts/matter_bin = 5,/obj/item/stock_parts/manipulator = 5)
 	refill_canister = /obj/item/vending_refill/engineering
 
 /obj/machinery/vending/engineering/Initialize(mapload)
@@ -1616,9 +1632,9 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	req_access_txt = "29"
-	products = list(/obj/item/clothing/suit/storage/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/flash = 4,
-					/obj/item/stock_parts/cell/high = 12, /obj/item/assembly/prox_sensor = 3,/obj/item/assembly/signaler = 3,/obj/item/healthanalyzer = 3,
-					/obj/item/scalpel = 2,/obj/item/circular_saw = 2,/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
+	products = list(/obj/item/clothing/suit/storage/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/flash = 6,
+					/obj/item/stock_parts/cell/high/plus = 6, /obj/item/assembly/prox_sensor = 6,/obj/item/assembly/signaler = 3,/obj/item/healthanalyzer = 3,
+					/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 2,
 					/obj/item/screwdriver = 5,/obj/item/crowbar = 5)
 	refill_canister = /obj/item/vending_refill/robotics
 
@@ -1748,11 +1764,17 @@
 	products = list(/obj/item/clothing/head/that = 2,
 					/obj/item/clothing/head/fedora = 1,
 					/obj/item/clothing/glasses/monocle = 1,
-					/obj/item/clothing/under/suit_jacket/navy = 2,
 					/obj/item/clothing/under/kilt = 1,
 					/obj/item/clothing/under/overalls = 1,
-					/obj/item/clothing/under/suit_jacket/really_black = 2,
 					/obj/item/clothing/suit/storage/lawyer/blackjacket = 2,
+					/obj/item/clothing/under/suit_jacket/navy = 2,
+					/obj/item/clothing/under/suit_jacket/really_black = 2,
+					/obj/item/clothing/under/suit_jacket = 2,
+					/obj/item/clothing/under/suit_jacket/red = 2,
+					/obj/item/clothing/under/suit_jacket/tan = 2,
+					/obj/item/clothing/under/suit_jacket/burgundy = 2,
+					/obj/item/clothing/under/suit_jacket/charcoal = 2,
+					/obj/item/clothing/under/suit_jacket/checkered = 2,
 					/obj/item/clothing/under/pants/jeans = 3,
 					/obj/item/clothing/under/pants/classicjeans = 2,
 					/obj/item/clothing/under/pants/camo = 1,

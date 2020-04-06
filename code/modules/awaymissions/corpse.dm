@@ -131,7 +131,7 @@
 	//Human specific stuff.
 	var/mob_species = null		//Set species
 	var/allow_species_pick = FALSE
-	var/list/pickable_species = list("Human", "Tajaran", "Unathi", "Skrell", "Diona")
+	var/list/pickable_species = list("Human", "Vulpkanin", "Tajaran", "Unathi", "Skrell", "Diona")
 	var/datum/outfit/outfit = /datum/outfit	//If this is a path, it will be instanced in Initialize()
 	var/disable_pda = TRUE
 	var/disable_sensors = TRUE
@@ -460,7 +460,7 @@
 	name = "Space Bartender"
 	mob_name = "Bartender"
 	id_job = "Bartender"
-	id_access_list = list(access_bar)
+	id_access_list = list(ACCESS_BAR)
 	outfit = /datum/outfit/spacebartender
 
 /obj/effect/mob_spawn/human/bartender/alive

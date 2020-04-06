@@ -43,7 +43,7 @@
 
 /turf/Initialize(mapload)
 	. = ..()
-	
+
 	var/area/A = loc
 	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
 		add_overlay(/obj/effect/fullbright)
@@ -70,7 +70,7 @@
 /turf/Destroy()
 // Adds the adjacent turfs to the current atmos processing
 	if(SSair)
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinal)
 			if(atmos_adjacent_turfs & direction)
 				var/turf/simulated/T = get_step(src, direction)
 				if(istype(T))
@@ -187,7 +187,7 @@
 /turf/proc/ChangeTurf(path, defer_change = FALSE, keep_icon = TRUE, ignore_air = FALSE)
 	if(!path)
 		return
-	if(!use_preloader && path == type) // Don't no-op if the map loader requires it to be reconstructed
+	if(!GLOB.use_preloader && path == type) // Don't no-op if the map loader requires it to be reconstructed
 		return src
 
 	set_light(0)
@@ -206,7 +206,7 @@
 	var/old_baseturf = baseturf
 	var/turf/W = new path(src)
 	W.baseturf = old_baseturf
-	
+
 	if(!defer_change)
 		W.AfterChange(ignore_air)
 	W.blueprint_data = old_blueprint_data
@@ -266,7 +266,7 @@
 		var/atemp = 0
 		var/turf_count = 0
 
-		for(var/direction in cardinal)//Only use cardinals to cut down on lag
+		for(var/direction in GLOB.cardinal)//Only use cardinals to cut down on lag
 			var/turf/T = get_step(src,direction)
 			if(istype(T,/turf/space))//Counted as no air
 				turf_count++//Considered a valid turf for air calcs
@@ -309,6 +309,10 @@
 	for(var/atom/movable/AM in contents)
 		AM.get_spooked()
 
+// Defined here to avoid runtimes
+/turf/proc/MakeDry(wet_setting = TURF_WET_WATER)
+	return
+
 /turf/proc/burn_down()
 	return
 
@@ -327,7 +331,7 @@
 	var/list/L = new()
 	var/turf/simulated/T
 
-	for(var/dir in cardinal)
+	for(var/dir in GLOB.cardinal)
 		T = get_step(src, dir)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
@@ -340,7 +344,7 @@
 	var/list/L = new()
 	var/turf/simulated/T
 
-	for(var/dir in cardinal)
+	for(var/dir in GLOB.cardinal)
 		T = get_step(src, dir)
 		if(istype(T) && !T.density)
 			if(!CanAtmosPass(T))
@@ -412,6 +416,27 @@
 
 ////////////////////////////////////////////////////
 
+/turf/acid_act(acidpwr, acid_volume)
+	. = 1
+	var/acid_type = /obj/effect/acid
+	if(acidpwr >= 200) //alien acid power
+		acid_type = /obj/effect/acid/alien
+	var/has_acid_effect = FALSE
+	for(var/obj/O in src)
+		if(intact && O.level == 1) //hidden under the floor
+			continue
+		if(istype(O, acid_type))
+			var/obj/effect/acid/A = O
+			A.acid_level = min(A.level + acid_volume * acidpwr, 12000)//capping acid level to limit power of the acid
+			has_acid_effect = 1
+			continue
+		O.acid_act(acidpwr, acid_volume)
+	if(!has_acid_effect)
+		new acid_type(src, acidpwr, acid_volume)
+
+/turf/proc/acid_melt()
+	return
+
 /turf/handle_fall(mob/faller, forced)
 	faller.lying = pick(90, 270)
 	if(!forced)
@@ -424,14 +449,14 @@
 		for(var/obj/O in contents) //this is for deleting things like wires contained in the turf
 			if(O.level != 1)
 				continue
-			if(O.invisibility == 101)
+			if(O.invisibility == INVISIBILITY_MAXIMUM)
 				O.singularity_act()
 	ChangeTurf(baseturf)
 	return(2)
 
 /turf/proc/visibilityChanged()
 	if(SSticker)
-		cameranet.updateVisibility(src)
+		GLOB.cameranet.updateVisibility(src)
 
 /turf/attackby(obj/item/I, mob/user, params)
 	if(can_lay_cable())
@@ -516,5 +541,5 @@
 /turf/AllowDrop()
 	return TRUE
 
-/turf/proc/water_act(volume, temperature, source)	
+/turf/proc/water_act(volume, temperature, source)
  	return FALSE

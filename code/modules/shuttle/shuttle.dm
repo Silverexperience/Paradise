@@ -9,7 +9,7 @@
 	//icon = 'icons/dirsquare.dmi'
 	icon_state = "pinonfar"
 
-	unacidable = 1
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	anchored = 1
 
 	var/id
@@ -774,7 +774,7 @@
 		ui = new(user, src, ui_key, "shuttle_console.tmpl", M ? M.name : "shuttle", 300, 200)
 		ui.open()
 
-/obj/machinery/computer/shuttle/ui_data(mob/user, ui_key = "main", datum/topic_state/state = default_state)
+/obj/machinery/computer/shuttle/ui_data(mob/user, ui_key = "main", datum/topic_state/state = GLOB.default_state)
 	var/data[0]
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	data["status"] = M ? M.getStatusText() : null
@@ -837,6 +837,7 @@
 	var/cooldown //prevents spamming admins
 	possible_destinations = "ferry_home"
 	admin_controlled = 1
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/machinery/computer/shuttle/ferry/request/Topic(href, href_list)
 	if(..())
@@ -874,7 +875,7 @@
 
 /obj/machinery/computer/shuttle/admin
 	name = "admin shuttle console"
-	req_access = list(access_cent_general)
+	req_access = list(ACCESS_CENT_GENERAL)
 	shuttleId = "admin"
 	possible_destinations = "admin_home;admin_away;admin_custom"
 	resistance_flags = INDESTRUCTIBLE
@@ -899,7 +900,7 @@
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/computer/shuttle/trade/sol
-	req_access = list(access_trade_sol)
+	req_access = list(ACCESS_TRADE_SOL)
 	possible_destinations = "trade_sol_base;trade_dock"
 	shuttleId = "trade_sol"
 
