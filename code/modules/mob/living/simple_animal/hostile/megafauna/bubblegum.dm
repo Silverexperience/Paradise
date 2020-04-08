@@ -396,9 +396,9 @@ Difficulty: Hard
 	if(. > 0 && prob(25))
 		var/obj/effect/decal/cleanable/blood/gibs/bubblegum/B = new /obj/effect/decal/cleanable/blood/gibs/bubblegum(loc)
 		if(prob(40))
-			step(B, pick(GLOB.cardinal))
+			step(B, pick(cardinal))
 		else
-			B.setDir(pick(GLOB.cardinal))
+			B.setDir(pick(cardinal))
 
 /obj/effect/decal/cleanable/blood/gibs/bubblegum
 	name = "thick blood"

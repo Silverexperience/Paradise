@@ -1,4 +1,4 @@
-GLOBAL_LIST_EMPTY(limb_icon_cache)
+var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/compile_icon()
 	// I do this so the head's overlays don't get obliterated

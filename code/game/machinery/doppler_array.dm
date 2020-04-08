@@ -1,4 +1,4 @@
-GLOBAL_LIST_EMPTY(doppler_arrays)
+var/list/doppler_arrays = list()
 
 /obj/machinery/doppler_array
 	name = "tachyon-doppler array"
@@ -28,12 +28,12 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 
 /obj/machinery/doppler_array/New()
 	..()
-	GLOB.doppler_arrays += src
+	doppler_arrays += src
 	explosion_target = rand(10, 50)
 	toxins_tech = new /datum/tech/toxins(src)
 
 /obj/machinery/doppler_array/Destroy()
-	GLOB.doppler_arrays -= src
+	doppler_arrays -= src
 	logged_explosions.Cut()
 	return ..()
 
@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/doppler_array/ui_data(mob/user, ui_key = "main", datum/topic_state/state = GLOB.default_state)
+/obj/machinery/doppler_array/ui_data(mob/user, ui_key = "main", datum/topic_state/state = default_state)
 	var/data[0]
 	var/list/explosion_data = list()
 	for(var/D in logged_explosions)

@@ -226,7 +226,7 @@
 	user.ghostize(1)
 
 /////////////////////Multiverse Blade////////////////////
-GLOBAL_LIST_EMPTY(multiverse)
+var/global/list/multiverse = list()
 
 /obj/item/multisword
 	name = "multiverse sword"
@@ -252,11 +252,11 @@ GLOBAL_LIST_EMPTY(multiverse)
 
 /obj/item/multisword/New()
 	..()
-	GLOB.multiverse |= src
+	multiverse |= src
 
 
 /obj/item/multisword/Destroy()
-	GLOB.multiverse.Remove(src)
+	multiverse.Remove(src)
 	return ..()
 
 /obj/item/multisword/attack(mob/living/M as mob, mob/living/user as mob)  //to prevent accidental friendly fire or out and out grief.
@@ -303,7 +303,7 @@ GLOBAL_LIST_EMPTY(multiverse)
 					evil = FALSE
 		else
 			cooldown = world.time + cooldown_between_uses
-			for(var/obj/item/multisword/M in GLOB.multiverse)
+			for(var/obj/item/multisword/M in multiverse)
 				if(M.assigned == assigned)
 					M.cooldown = cooldown
 
@@ -842,7 +842,7 @@ GLOBAL_LIST_EMPTY(multiverse)
 					user.unset_machine()
 			if("r_leg","l_leg")
 				to_chat(user, "<span class='notice'>You move the doll's legs around.</span>")
-				var/turf/T = get_step(target,pick(GLOB.cardinal))
+				var/turf/T = get_step(target,pick(cardinal))
 				target.Move(T)
 			if("r_arm","l_arm")
 				//use active hand on random nearby mob

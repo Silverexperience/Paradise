@@ -4,7 +4,7 @@
 	TODO: Proper documentation
 	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][s_tone]
 */
-GLOBAL_LIST_EMPTY(human_icon_cache)
+var/global/list/human_icon_cache = list()
 
 	///////////////////////
 	//UPDATE_ICONS SYSTEM//
@@ -120,7 +120,7 @@ Please contact me on #coderbus IRC. ~Carn x
 		overlays_standing[cache_index] = null
 
 
-GLOBAL_LIST_EMPTY(damage_icon_parts)
+var/global/list/damage_icon_parts = list()
 
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
@@ -151,13 +151,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		var/icon/DI
 		var/cache_index = "[E.damage_state]/[E.icon_name]/[dna.species.blood_color]/[dna.species.name]"
 
-		if(GLOB.damage_icon_parts[cache_index] == null)
+		if(damage_icon_parts[cache_index] == null)
 			DI = new /icon(dna.species.damage_overlays, E.damage_state)			// the damage icon for whole human
 			DI.Blend(new /icon(dna.species.damage_mask, E.icon_name), ICON_MULTIPLY)	// mask with this organ's pixels
 			DI.Blend(dna.species.blood_color, ICON_MULTIPLY)
-			GLOB.damage_icon_parts[cache_index] = DI
+			damage_icon_parts[cache_index] = DI
 		else
-			DI = GLOB.damage_icon_parts[cache_index]
+			DI = damage_icon_parts[cache_index]
 		damage_overlay.overlays += DI
 
 	apply_overlay(H_DAMAGE_LAYER)
@@ -191,8 +191,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	var/icon_key = generate_icon_render_key()
 
 	var/mutable_appearance/base
-	if(GLOB.human_icon_cache[icon_key] && !rebuild_base)
-		base = GLOB.human_icon_cache[icon_key]
+	if(human_icon_cache[icon_key] && !rebuild_base)
+		base = human_icon_cache[icon_key]
 		standing += base
 	else
 		var/icon/base_icon
@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			base_icon.Blend(husk_over, ICON_OVERLAY)
 
 		var/mutable_appearance/new_base = mutable_appearance(base_icon, layer = -LIMBS_LAYER)
-		GLOB.human_icon_cache[icon_key] = new_base
+		human_icon_cache[icon_key] = new_base
 		standing += new_base
 
 		//END CACHED ICON GENERATION.
@@ -459,7 +459,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(gender == FEMALE)
 		g = "f"
 	// DNA2 - Drawing underlays.
-	for(var/datum/dna/gene/gene in GLOB.dna_genes)
+	for(var/datum/dna/gene/gene in dna_genes)
 		if(!gene.block)
 			continue
 		if(gene.is_active(src))

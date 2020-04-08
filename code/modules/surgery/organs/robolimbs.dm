@@ -1,19 +1,19 @@
-GLOBAL_LIST_EMPTY(all_robolimbs)
-GLOBAL_LIST_EMPTY(chargen_robolimbs)
-GLOBAL_LIST_EMPTY(selectable_robolimbs)
-GLOBAL_DATUM(basic_robolimb, /datum/robolimb)
+var/global/list/all_robolimbs = list()
+var/global/list/chargen_robolimbs = list()
+var/global/list/selectable_robolimbs = list()
+var/global/datum/robolimb/basic_robolimb
 
 /proc/populate_robolimb_list()
-	GLOB.basic_robolimb = new()
+	basic_robolimb = new()
 	for(var/limb_type in typesof(/datum/robolimb))
 		var/datum/robolimb/R = new limb_type()
-		GLOB.all_robolimbs[R.company] = R
+		all_robolimbs[R.company] = R
 		if(!R.unavailable_at_chargen)
 			if(R != "head" && R != "chest" && R != "groin" ) //Part of the method that ensures only IPCs can access head, chest and groin prosthetics.
 				if(R.has_subtypes) //Ensures solos get added to the list as well be incorporating has_subtypes == 1 and has_subtypes == 2.
-					GLOB.chargen_robolimbs[R.company] = R //List only main brands and solo parts.
+					chargen_robolimbs[R.company] = R //List only main brands and solo parts.
 		if(R.selectable)
-			GLOB.selectable_robolimbs[R.company] = R
+			selectable_robolimbs[R.company] = R
 
 /datum/robolimb
 	var/company = "Unbranded"                            // Shown when selecting the limb.

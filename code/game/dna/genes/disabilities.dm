@@ -54,7 +54,7 @@
 	mutation=HALLUCINATE
 
 /datum/dna/gene/disability/hallucinate/New()
-	block=GLOB.hallucinationblock
+	block=HALLUCINATIONBLOCK
 
 /datum/dna/gene/disability/epilepsy
 	name="Epilepsy"
@@ -64,7 +64,7 @@
 	disability=EPILEPSY
 
 /datum/dna/gene/disability/epilepsy/New()
-	block=GLOB.epilepsyblock
+	block=EPILEPSYBLOCK
 
 /datum/dna/gene/disability/cough
 	name="Coughing"
@@ -74,7 +74,7 @@
 	disability=COUGHING
 
 /datum/dna/gene/disability/cough/New()
-	block=GLOB.coughblock
+	block=COUGHBLOCK
 
 /datum/dna/gene/disability/clumsy
 	name="Clumsiness"
@@ -84,7 +84,7 @@
 	mutation=CLUMSY
 
 /datum/dna/gene/disability/clumsy/New()
-	block=GLOB.clumsyblock
+	block=CLUMSYBLOCK
 
 /datum/dna/gene/disability/tourettes
 	name="Tourettes"
@@ -94,7 +94,7 @@
 	disability=TOURETTES
 
 /datum/dna/gene/disability/tourettes/New()
-	block=GLOB.twitchblock
+	block=TWITCHBLOCK
 
 /datum/dna/gene/disability/nervousness
 	name="Nervousness"
@@ -103,7 +103,7 @@
 	disability=NERVOUS
 
 /datum/dna/gene/disability/nervousness/New()
-	block=GLOB.nervousblock
+	block=NERVOUSBLOCK
 
 
 /datum/dna/gene/disability/blindness
@@ -114,7 +114,7 @@
 	disability = BLIND
 
 /datum/dna/gene/disability/blindness/New()
-	block = GLOB.blindblock
+	block = BLINDBLOCK
 
 /datum/dna/gene/disability/blindness/activate(mob/M, connected, flags)
 	..()
@@ -133,7 +133,7 @@
 	disability = COLOURBLIND
 
 /datum/dna/gene/disability/colourblindness/New()
-	block=GLOB.colourblindblock
+	block=COLOURBLINDBLOCK
 
 /datum/dna/gene/disability/colourblindness/activate(var/mob/M, var/connected, var/flags)
 	..()
@@ -153,7 +153,7 @@
 	disability=DEAF
 
 /datum/dna/gene/disability/deaf/New()
-	block=GLOB.deafblock
+	block=DEAFBLOCK
 
 /datum/dna/gene/disability/deaf/activate(var/mob/M, var/connected, var/flags)
 	..()
@@ -167,7 +167,7 @@
 	disability=NEARSIGHTED
 
 /datum/dna/gene/disability/nearsighted/New()
-	block=GLOB.glassesblock
+	block=GLASSESBLOCK
 
 /datum/dna/gene/disability/nearsighted/activate(mob/living/M, connected, flags)
 	. = ..()
@@ -186,7 +186,7 @@
 
 /datum/dna/gene/disability/lisp/New()
 	..()
-	block=GLOB.lispblock
+	block=LISPBLOCK
 
 /datum/dna/gene/disability/lisp/OnSay(var/mob/M, var/message)
 	return replacetext(message,"s","th")
@@ -199,7 +199,7 @@
 	mutation=COMIC
 
 /datum/dna/gene/disability/comic/New()
-	block = GLOB.comicblock
+	block = COMICBLOCK
 
 /datum/dna/gene/disability/wingdings
 	name = "Alien Voice"
@@ -210,7 +210,7 @@
 	mutation = WINGDINGS
 
 /datum/dna/gene/disability/wingdings/New()
-	block = GLOB.wingdingsblock
+	block = WINGDINGSBLOCK
 
 /datum/dna/gene/disability/wingdings/OnSay(var/mob/M, var/message)
 	var/list/chars = string2charlist(message)

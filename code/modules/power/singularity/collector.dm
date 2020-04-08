@@ -1,4 +1,4 @@
-GLOBAL_LIST_EMPTY(rad_collectors)
+var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
@@ -19,10 +19,10 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 /obj/machinery/power/rad_collector/Initialize(mapload)
 	. = ..()
-	GLOB.rad_collectors += src
+	rad_collectors += src
 
 /obj/machinery/power/rad_collector/Destroy()
-	GLOB.rad_collectors -= src
+	rad_collectors -= src
 	return ..()
 
 /obj/machinery/power/rad_collector/process()

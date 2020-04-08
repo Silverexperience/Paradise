@@ -28,7 +28,7 @@
 		reconcile_air()
 	return
 
-GLOBAL_VAR_INIT(pipenetwarnings, 10)
+var/pipenetwarnings = 10
 
 /datum/pipeline/proc/build_pipeline(obj/machinery/atmospherics/base)
 	var/volume = 0

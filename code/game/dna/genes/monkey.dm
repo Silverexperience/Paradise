@@ -2,7 +2,7 @@
 	name="Monkey"
 
 /datum/dna/gene/monkey/New()
-	block=GLOB.monkeyblock
+	block=MONKEYBLOCK
 
 /datum/dna/gene/monkey/can_activate(var/mob/M,var/flags)
 	return ishuman(M)

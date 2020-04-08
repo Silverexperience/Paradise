@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(default_martial_art, /datum/martial_art, new())
+var/global/default_martial_art = new/datum/martial_art
 /mob/living/carbon/human
 
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ID_HUD,WANTED_HUD,IMPMINDSHIELD_HUD,IMPCHEM_HUD,IMPTRACK_HUD,SPECIALROLE_HUD,GLAND_HUD)

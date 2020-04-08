@@ -133,6 +133,5 @@
 
 	var/powertransfer = (charging.chargerate)/5
 	var/transfered = charging.give(powertransfer)
-	use_power(transfered * 1.5)
-
+	use_power(transfered * 11)
 	update_icon()

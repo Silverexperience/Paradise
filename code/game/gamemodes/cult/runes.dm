@@ -1,5 +1,5 @@
-GLOBAL_LIST_EMPTY(sacrificed)
-GLOBAL_LIST_INIT(non_revealed_runes, (subtypesof(/obj/effect/rune) - /obj/effect/rune/malformed))
+var/list/sacrificed = list()
+var/list/non_revealed_runes = (subtypesof(/obj/effect/rune) - /obj/effect/rune/malformed)
 
 /*
 This file contains runes.
@@ -255,7 +255,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	qdel(paper_to_imbue)
 	rune_in_use = 0
 
-GLOBAL_LIST_EMPTY(teleport_runes)
+var/list/teleport_runes = list()
 /obj/effect/rune/teleport
 	cultist_name = "Teleport"
 	cultist_desc = "warps everything above it to another chosen teleport rune."
@@ -270,10 +270,10 @@ GLOBAL_LIST_EMPTY(teleport_runes)
 	var/area/A = get_area(src)
 	var/locname = initial(A.name)
 	listkey = set_keyword ? "[set_keyword] [locname]":"[locname]"
-	GLOB.teleport_runes += src
+	teleport_runes += src
 
 /obj/effect/rune/teleport/Destroy()
-	GLOB.teleport_runes -= src
+	teleport_runes -= src
 	return ..()
 
 /obj/effect/rune/teleport/invoke(var/list/invokers)
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(teleport_runes)
 	var/list/potential_runes = list()
 	var/list/teleportnames = list()
 	var/list/duplicaterunecount = list()
-	for(var/R in GLOB.teleport_runes)
+	for(var/R in teleport_runes)
 		var/obj/effect/rune/teleport/T = R
 		var/resultkey = T.listkey
 		if(resultkey in teleportnames)
@@ -349,7 +349,7 @@ GLOBAL_LIST_EMPTY(teleport_runes)
 	req_cultists = 1
 	allow_excess_invokers = TRUE
 	rune_in_use = FALSE
-
+	
 /obj/effect/rune/convert/do_invoke_glow()
 	return
 
@@ -410,7 +410,7 @@ GLOBAL_LIST_EMPTY(teleport_runes)
 	var/sacrifice_fulfilled
 	var/datum/game_mode/cult/cult_mode = SSticker.mode
 	if(offering.mind)
-		GLOB.sacrificed.Add(offering.mind)
+		sacrificed.Add(offering.mind)
 		if(is_sacrifice_target(offering.mind))
 			sacrifice_fulfilled = TRUE
 	new /obj/effect/temp_visual/cult/sac(loc)

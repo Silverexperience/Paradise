@@ -11,7 +11,7 @@
 
 /datum/dna/gene/basic/grant_spell/morph/New()
 	..()
-	block = GLOB.morphblock
+	block = MORPHBLOCK
 
 /obj/effect/proc_holder/spell/targeted/morph
 	name = "Morph"
@@ -186,7 +186,7 @@
 
 /datum/dna/gene/basic/grant_spell/remotetalk/New()
 	..()
-	block=GLOB.remotetalkblock
+	block=REMOTETALKBLOCK
 
 /datum/dna/gene/basic/grant_spell/remotetalk/activate(mob/user)
 	..()
@@ -345,7 +345,7 @@
 	spelltype =/obj/effect/proc_holder/spell/targeted/remoteview
 
 /datum/dna/gene/basic/grant_spell/remoteview/New()
-	block=GLOB.remoteviewblock
+	block=REMOTEVIEWBLOCK
 
 
 /obj/effect/proc_holder/spell/targeted/remoteview

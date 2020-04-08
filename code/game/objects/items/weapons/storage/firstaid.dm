@@ -23,7 +23,6 @@
 	var/treatment_virus = "spaceacillin"
 	var/med_bot_skin = null
 	var/syndicate_aligned = FALSE
-	var/robot_arm // This is for robot construction
 
 
 /obj/item/storage/firstaid/fire
@@ -154,7 +153,7 @@
 	new /obj/item/stack/medical/ointment/advanced(src)
 	new /obj/item/stack/medical/ointment/advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector(src)
-	new /obj/item/healthanalyzer( src )  //Unicamente por ser un medikit especifico
+	//new /obj/item/healthanalyzer( src )
 
 /obj/item/storage/firstaid/adv/empty
 	empty = 1

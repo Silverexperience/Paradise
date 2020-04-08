@@ -1,4 +1,5 @@
-GLOBAL_DATUM_INIT(maploader, /dmm_suite, new())
+var/global/dmm_suite/maploader = new
+
 dmm_suite{
 	/*
 

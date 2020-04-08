@@ -1,6 +1,6 @@
-GLOBAL_LIST_INIT(wcBar, pick(list("#0d8395", "#58b5c3", "#58c366", "#90d79a", "#ffffff")))
-GLOBAL_LIST_INIT(wcBrig, pick(list("#aa0808", "#7f0606", "#ff0000")))
-GLOBAL_LIST_INIT(wcCommon, pick(list("#379963", "#0d8395", "#58b5c3", "#49e46e", "#8fcf44", "#ffffff")))
+var/global/wcBar = pick(list("#0d8395", "#58b5c3", "#58c366", "#90d79a", "#ffffff"))
+var/global/wcBrig = pick(list("#aa0808", "#7f0606", "#ff0000"))
+var/global/wcCommon = pick(list("#379963", "#0d8395", "#58b5c3", "#49e46e", "#8fcf44", "#ffffff"))
 
 /obj/proc/color_windows(obj/W)
 	var/list/wcBarAreas = list(/area/crew_quarters/bar)
@@ -13,11 +13,11 @@ GLOBAL_LIST_INIT(wcCommon, pick(list("#379963", "#0d8395", "#58b5c3", "#49e46e",
 	var/area/A = T.loc
 
 	if(is_type_in_list(A,wcBarAreas))
-		newcolor = GLOB.wcBar
+		newcolor = wcBar
 	else if(is_type_in_list(A,wcBrigAreas))
-		newcolor = GLOB.wcBrig
+		newcolor = wcBrig
 	else
-		newcolor = GLOB.wcCommon
+		newcolor = wcCommon
 
 	return newcolor
 

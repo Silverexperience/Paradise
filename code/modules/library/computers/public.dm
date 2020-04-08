@@ -27,7 +27,7 @@
 				<A href='?src=[UID()];search=1'>\[Start Search\]</A><br />"}
 		if(1)
 			establish_db_connection()
-			if(!GLOB.dbcon.IsConnected())
+			if(!dbcon.IsConnected())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font><br />"
 			else if(num_results == 0)
 				dat += "<em>No results found.</em>"
@@ -84,7 +84,7 @@
 		else
 			query.title = null
 	if(href_list["setcategory"])
-		var/newcategory = input("Choose a category to search for:") in (list("Any") + GLOB.library_section_names)
+		var/newcategory = input("Choose a category to search for:") in (list("Any") + library_section_names)
 		if(newcategory == "Any")
 			query.category = null
 		else if(newcategory)
@@ -113,7 +113,7 @@
 		screenstate = 0
 
 	if(href_list["flag"])
-		if(!GLOB.dbcon.IsConnected())
+		if(!dbcon.IsConnected())
 			alert("Connection to Archive has been severed. Aborting.")
 			return
 		var/id = href_list["flag"]
@@ -121,7 +121,7 @@
 			var/datum/cachedbook/B = getBookByID(id)
 			if(B)
 				if((input(usr, "Are you sure you want to flag [B.title] as having inappropriate content?", "Flag Book #[B.id]") in list("Yes", "No")) == "Yes")
-					GLOB.library_catalog.flag_book_by_id(usr, id)
+					library_catalog.flag_book_by_id(usr, id)
 
 	add_fingerprint(usr)
 	updateUsrDialog()

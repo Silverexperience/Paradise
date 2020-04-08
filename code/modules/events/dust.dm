@@ -36,7 +36,7 @@
 	var/starty = 0
 	var/endy = 0
 	var/endx = 0
-	var/startside = pick(GLOB.cardinal)
+	var/startside = pick(cardinal)
 
 	switch(startside)
 		if(NORTH)

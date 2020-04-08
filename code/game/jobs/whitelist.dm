@@ -1,6 +1,6 @@
 #define WHITELISTFILE "data/whitelist.txt"
 
-GLOBAL_LIST_EMPTY(whitelist)
+var/list/whitelist = list()
 
 /hook/startup/proc/loadWhitelist()
 	if(config.usewhitelist)
@@ -8,8 +8,8 @@ GLOBAL_LIST_EMPTY(whitelist)
 	return 1
 
 /proc/load_whitelist()
-	GLOB.whitelist = file2list(WHITELISTFILE)
-	if(!GLOB.whitelist.len)	GLOB.whitelist = null
+	whitelist = file2list(WHITELISTFILE)
+	if(!whitelist.len)	whitelist = null
 /*
 /proc/check_whitelist(mob/M, var/rank)
 	if(!whitelist)
@@ -25,11 +25,11 @@ GLOBAL_LIST_EMPTY(whitelist)
 			return 1
 		if(check_rights(R_ADMIN, 0, M))
 			return 1
-		if(!GLOB.dbcon.IsConnected())
+		if(!dbcon.IsConnected())
 			to_chat(usr, "<span class='warning'>Unable to connect to whitelist database. Please try again later.<br></span>")
 			return 0
 		else
-			var/DBQuery/query = GLOB.dbcon.NewQuery("SELECT job FROM [format_table_name("whitelist")] WHERE ckey='[M.ckey]'")
+			var/DBQuery/query = dbcon.NewQuery("SELECT job FROM [format_table_name("whitelist")] WHERE ckey='[M.ckey]'")
 			query.Execute()
 
 
@@ -44,9 +44,31 @@ GLOBAL_LIST_EMPTY(whitelist)
 		return 1
 
 
+/proc/is_heads_whitelisted(mob/M, var/rank)
+	if(heads_jobbans(rank))
+		if(!config.usewhitelist)
+			return 1
+		if(check_rights(R_ADMIN, 0, M))
+			return 1
+		if(!dbcon.IsConnected())
+			to_chat(usr, "<span class='warning'>Unable to connect to whitelist database. Please try again later.<br></span>")
+			return 0
+		else
+			var/DBQuery/query = dbcon.NewQuery("SELECT job FROM [format_table_name("whitelist")] WHERE ckey='[M.ckey]'")
+			query.Execute()
+
+			while(query.NextRow())
+				var/joblist = query.item[1]
+				if(joblist!="*")
+					var/allowed_jobs = splittext(joblist,",")
+					if(rank in allowed_jobs) return 1
+				else return 1
+			return 0
+	else
+		return 1
 
 
-GLOBAL_LIST_EMPTY(alien_whitelist)
+/var/list/alien_whitelist = list()
 
 /hook/startup/proc/loadAlienWhitelist()
 	if(config.usealienwhitelist)
@@ -58,7 +80,7 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 	if(!text)
 		log_config("Failed to load config/alienwhitelist.txt\n")
 	else
-		GLOB.alien_whitelist = splittext(text, "\n")
+		alien_whitelist = splittext(text, "\n")
 
 //todo: admin aliens
 /proc/is_alien_whitelisted(mob/M, var/species)
@@ -70,13 +92,13 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 		return 1
 	if(check_rights(R_ADMIN, 0))
 		return 1
-	if(!GLOB.alien_whitelist)
+	if(!alien_whitelist)
 		return 0
-	if(!GLOB.dbcon.IsConnected())
+	if(!dbcon.IsConnected())
 		to_chat(usr, "<span class='warning'>Unable to connect to whitelist database. Please try again later.<br></span>")
 		return 0
 	else
-		var/DBQuery/query = GLOB.dbcon.NewQuery("SELECT species FROM [format_table_name("whitelist")] WHERE ckey='[M.ckey]'")
+		var/DBQuery/query = dbcon.NewQuery("SELECT species FROM [format_table_name("whitelist")] WHERE ckey='[M.ckey]'")
 		query.Execute()
 
 		while(query.NextRow())

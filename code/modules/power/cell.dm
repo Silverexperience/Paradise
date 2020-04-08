@@ -295,11 +295,10 @@
 	origin_tech =  "powerstorage=7"
 	maxcharge = 30000
 	materials = list(MAT_GLASS=1000)
-	rating = 12
 	chargerate = 30000
 
 /obj/item/stock_parts/cell/infinite/use()
-	return TRUE
+	return 1
 
 /obj/item/stock_parts/cell/infinite/abductor
 	name = "void core"
@@ -334,7 +333,7 @@
 	icon_state = "yellow slime extract"
 	materials = list()
 	rating = 4.5 //self-recharge makes these desirable, 45000 de getrating
-	self_recharge = TRUE // Infused slime cores self-recharge, over time
+	self_recharge = 1 // Infused slime cores self-recharge, over time
 	chargerate = 500
 	overaynull = TRUE
 

@@ -51,12 +51,12 @@
 	if((dos_overload > dos_capacity) && !dos_failure)
 		dos_failure = 1
 		update_icon()
-		GLOB.ntnet_global.add_log("Quantum relay switched from normal operation mode to overload recovery mode.")
+		ntnet_global.add_log("Quantum relay switched from normal operation mode to overload recovery mode.")
 	// If the DoS buffer reaches 0 again, restart.
 	if((dos_overload == 0) && dos_failure)
 		dos_failure = 0
 		update_icon()
-		GLOB.ntnet_global.add_log("Quantum relay switched from overload recovery mode to normal operation mode.")
+		ntnet_global.add_log("Quantum relay switched from overload recovery mode to normal operation mode.")
 	..()
 
 /obj/machinery/ntnet_relay/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -82,10 +82,10 @@
 			dos_overload = 0
 			dos_failure = 0
 			update_icon()
-			GLOB.ntnet_global.add_log("Quantum relay manually restarted from overload recovery mode to normal operation mode.")
+			ntnet_global.add_log("Quantum relay manually restarted from overload recovery mode to normal operation mode.")
 		if("toggle")
 			enabled = !enabled
-			GLOB.ntnet_global.add_log("Quantum relay manually [enabled ? "enabled" : "disabled"].")
+			ntnet_global.add_log("Quantum relay manually [enabled ? "enabled" : "disabled"].")
 			update_icon()
 	return 1
 
@@ -101,16 +101,16 @@
 	component_parts += new /obj/item/stack/cable_coil(null, 2)
 	component_parts += new /obj/item/stock_parts/subspace/filter(null)
 
-	if(GLOB.ntnet_global)
-		GLOB.ntnet_global.relays.Add(src)
-		NTNet = GLOB.ntnet_global
-		GLOB.ntnet_global.add_log("New quantum relay activated. Current amount of linked relays: [NTNet.relays.len]")
+	if(ntnet_global)
+		ntnet_global.relays.Add(src)
+		NTNet = ntnet_global
+		ntnet_global.add_log("New quantum relay activated. Current amount of linked relays: [NTNet.relays.len]")
 	..()
 
 /obj/machinery/ntnet_relay/Destroy()
-	if(GLOB.ntnet_global)
-		GLOB.ntnet_global.relays.Remove(src)
-		GLOB.ntnet_global.add_log("Quantum relay connection severed. Current amount of linked relays: [NTNet.relays.len]")
+	if(ntnet_global)
+		ntnet_global.relays.Remove(src)
+		ntnet_global.add_log("Quantum relay connection severed. Current amount of linked relays: [NTNet.relays.len]")
 		NTNet = null
 
 	for(var/datum/computer_file/program/ntnet_dos/D in dos_sources)

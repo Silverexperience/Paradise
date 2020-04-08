@@ -161,14 +161,14 @@
 			eprojectile = /obj/item/projectile/beam/pulse
 			eshot_sound = 'sound/weapons/pulse.ogg'
 
-GLOBAL_LIST_EMPTY(turret_icons)
+var/list/turret_icons
 /obj/machinery/porta_turret/update_icon()
-	if(!GLOB.turret_icons)
-		GLOB.turret_icons = list()
-		GLOB.turret_icons["open"] = image(icon, "openTurretCover")
+	if(!turret_icons)
+		turret_icons = list()
+		turret_icons["open"] = image(icon, "openTurretCover")
 
 	underlays.Cut()
-	underlays += GLOB.turret_icons["open"]
+	underlays += turret_icons["open"]
 
 	if(stat & BROKEN)
 		icon_state = "destroyed_target_prism"
@@ -218,7 +218,7 @@ GLOBAL_LIST_EMPTY(turret_icons)
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/porta_turret/ui_data(mob/user, ui_key = "main", datum/topic_state/state = GLOB.default_state)
+/obj/machinery/porta_turret/ui_data(mob/user, ui_key = "main", datum/topic_state/state = default_state)
 	var/data[0]
 	data["access"] = !isLocked(user)
 	data["screen"] = screen

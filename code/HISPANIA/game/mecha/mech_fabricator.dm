@@ -2,7 +2,7 @@
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		req_access = list()
-		emagged = TRUE
+		emagged = 1
 		secureprotocols = FALSE
 		to_chat(user, "<span class='notice'>You disable the security protocols</span>")
 		..()

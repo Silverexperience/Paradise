@@ -22,7 +22,6 @@
 		for(var/datum/alternate_appearance/AA in viewing_alternate_appearances)
 			AA.viewers -= src
 		viewing_alternate_appearances = null
-	logs.Cut()
 	..()
 	return QDEL_HINT_HARDDEL
 
@@ -262,7 +261,7 @@
 
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
-GLOBAL_LIST_INIT(slot_equipment_priority, list( \
+var/list/slot_equipment_priority = list( \
 		slot_back,\
 		slot_wear_pda,\
 		slot_wear_id,\
@@ -280,14 +279,14 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list( \
 		slot_tie,\
 		slot_l_store,\
 		slot_r_store\
-	))
+	)
 
 //puts the item "W" into an appropriate slot in a human's inventory
 //returns 0 if it cannot, 1 if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
 	if(!istype(W)) return 0
 
-	for(var/slot in GLOB.slot_equipment_priority)
+	for(var/slot in slot_equipment_priority)
 		if(istype(W,/obj/item/storage/) && slot == slot_head) // Storage items should be put on the belt before the head
 			continue
 		if(equip_to_slot_if_possible(W, slot, 0, 1, 1)) //del_on_fail = 0; disable_warning = 0; redraw_mob = 1
@@ -298,7 +297,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list( \
 /mob/proc/check_for_open_slot(obj/item/W)
 	if(!istype(W)) return 0
 	var/openslot = 0
-	for(var/slot in GLOB.slot_equipment_priority)
+	for(var/slot in slot_equipment_priority)
 		if(W.mob_check_equip(src, slot, 1) == 1)
 			openslot = 1
 			break
@@ -742,7 +741,7 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list( \
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!GLOB.abandon_allowed)
+	if(!abandon_allowed)
 		to_chat(usr, "<span class='warning'>Respawning is disabled.</span>")
 		return
 
@@ -1119,10 +1118,10 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list( \
 
 /mob/proc/become_mouse()
 	var/timedifference = world.time - client.time_died_as_mouse
-	if(client.time_died_as_mouse && timedifference <= GLOB.mouse_respawn_time * 600)
+	if(client.time_died_as_mouse && timedifference <= mouse_respawn_time * 600)
 		var/timedifference_text
-		timedifference_text = time2text(GLOB.mouse_respawn_time * 600 - timedifference,"mm:ss")
-		to_chat(src, "<span class='warning'>You may only spawn again as a mouse more than [GLOB.mouse_respawn_time] minutes after your death. You have [timedifference_text] left.</span>")
+		timedifference_text = time2text(mouse_respawn_time * 600 - timedifference,"mm:ss")
+		to_chat(src, "<span class='warning'>You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left.</span>")
 		return
 
 	//find a viable mouse candidate
@@ -1258,19 +1257,13 @@ GLOBAL_LIST_INIT(slot_equipment_priority, list( \
 	return list() //must return list or IGNORE_ACCESS
 
 /mob/proc/create_attack_log(text, collapse = TRUE)
-	LAZYINITLIST(attack_log_old)
-	create_log_in_list(attack_log_old, text, collapse, last_log)
+	LAZYINITLIST(attack_log)
+	create_log_in_list(attack_log, text, collapse, last_log)
 	last_log = world.timeofday
 
 /mob/proc/create_debug_log(text, collapse = TRUE)
 	LAZYINITLIST(debug_log)
 	create_log_in_list(debug_log, text, collapse, world.timeofday)
-
-/mob/proc/create_log(log_type, what, target = null, turf/where = get_turf(src))
-	LAZYINITLIST(logs[log_type])
-	var/list/log_list = logs[log_type]
-	var/datum/log_record/record = new(log_type, src, what, target, where, world.time)
-	log_list.Add(record)
 
 /proc/create_log_in_list(list/target, text, collapse = TRUE, last_log)//forgive me code gods for this shitcode proc
 	//this proc enables lovely stuff like an attack log that looks like this: "[18:20:29-18:20:45]21x John Smith attacked Andrew Jackson with a crowbar."

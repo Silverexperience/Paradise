@@ -3,7 +3,7 @@
 // Gravity Generator
 //
 
-GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding new gravity generators to the list, and keying it with the z level.
+var/list/gravity_generators = list() // We will keep track of this by adding new gravity generators to the list, and keying it with the z level.
 
 #define GRAV_POWER_IDLE 0
 #define GRAV_POWER_UP 1
@@ -388,19 +388,19 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	var/turf/T = get_turf(src)
 	if(!T)
 		return 0
-	if(GLOB.gravity_generators["[T.z]"])
-		return length(GLOB.gravity_generators["[T.z]"])
+	if(gravity_generators["[T.z]"])
+		return length(gravity_generators["[T.z]"])
 	return 0
 
 /obj/machinery/gravity_generator/main/proc/update_list()
 	var/turf/T = get_turf(src.loc)
 	if(T)
-		if(!GLOB.gravity_generators["[T.z]"])
-			GLOB.gravity_generators["[T.z]"] = list()
+		if(!gravity_generators["[T.z]"])
+			gravity_generators["[T.z]"] = list()
 		if(on)
-			GLOB.gravity_generators["[T.z]"] |= src
+			gravity_generators["[T.z]"] |= src
 		else
-			GLOB.gravity_generators["[T.z]"] -= src
+			gravity_generators["[T.z]"] -= src
 
 // Misc
 

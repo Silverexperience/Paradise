@@ -4,8 +4,8 @@
 
 //As of 3.6.2016
 //global datum that will preload variables on atoms instanciation
-GLOBAL_VAR_INIT(use_preloader, FALSE)
-GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new())
+var/global/use_preloader = FALSE
+var/global/dmm_suite/preloader/_preloader = new
 
 /dmm_suite
 	// These regexes are global - meaning that starting the maploader again mid-load will
@@ -96,7 +96,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new())
 						if(cropMap)
 							continue
 						else
-							GLOB.space_manager.increase_max_zlevel_to(zcrd) //create a new z_level if needed
+							space_manager.increase_max_zlevel_to(zcrd) //create a new z_level if needed
 
 				bounds[MAP_MINX] = min(bounds[MAP_MINX], xcrdStart)
 				bounds[MAP_MINZ] = min(bounds[MAP_MINZ], zcrd)
@@ -156,10 +156,10 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new())
 
 			CHECK_TICK
 	catch(var/exception/e)
-		GLOB._preloader.reset()
+		_preloader.reset()
 		throw e
 
-	GLOB._preloader.reset()
+	_preloader.reset()
 	log_debug("Loaded map in [stop_watch(watch)]s.")
 	qdel(LM)
 	if(bounds[MAP_MINX] == 1.#INF) // Shouldn't need to check every item
@@ -271,14 +271,14 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new())
 			throw EXCEPTION("Oh no, I thought this was an area!")
 
 		var/atom/instance
-		GLOB._preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
+		_preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
 		instance = LM.area_path_to_real_area(members[index])
 
 		if(crds)
 			instance.contents.Add(crds)
 
-		if(GLOB.use_preloader && instance)
-			GLOB._preloader.load(instance)
+		if(use_preloader && instance)
+			_preloader.load(instance)
 
 	//then instance the /turf and, if multiple tiles are presents, simulates the DMM underlays piling effect
 
@@ -316,7 +316,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new())
 //Instance an atom at (x,y,z) and gives it the variables in attributes
 /dmm_suite/proc/instance_atom(path,list/attributes, x, y, z)
 	var/atom/instance
-	GLOB._preloader.setup(attributes, path)
+	_preloader.setup(attributes, path)
 
 	var/turf/T = locate(x,y,z)
 	if(T)
@@ -328,8 +328,8 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new())
 		else
 			instance = new path (T)//first preloader pass
 
-	if(GLOB.use_preloader && instance)//second preloader pass, for those atoms that don't ..() in New()
-		GLOB._preloader.load(instance)
+	if(use_preloader && instance)//second preloader pass, for those atoms that don't ..() in New()
+		_preloader.load(instance)
 
 	return instance
 
@@ -439,7 +439,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new())
 		json_ready = 0
 		if("map_json_data" in the_attributes)
 			json_ready = 1
-		GLOB.use_preloader = TRUE
+		use_preloader = TRUE
 		attributes = the_attributes
 		target_path = path
 
@@ -458,11 +458,11 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new())
 		if(islist(value))
 			value = deepCopyList(value)
 		what.vars[attribute] = value
-	GLOB.use_preloader = FALSE
+	use_preloader = FALSE
 
 // If the map loader fails, make this safe
 /dmm_suite/preloader/proc/reset()
-	GLOB.use_preloader = FALSE
+	use_preloader = FALSE
 	attributes = list()
 	target_path	= null
 

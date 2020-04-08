@@ -478,7 +478,7 @@
 	. = val_change ? STATUS_UPDATE_BLIND : STATUS_UPDATE_NONE
 	disabilities &= ~BLIND
 	if(val_change && updating)
-		CureIfHasDisability(GLOB.blindblock)
+		CureIfHasDisability(BLINDBLOCK)
 		update_blind_effects()
 
 // Coughing
@@ -488,7 +488,7 @@
 
 /mob/living/proc/CureCoughing()
 	disabilities &= ~COUGHING
-	CureIfHasDisability(GLOB.coughblock)
+	CureIfHasDisability(COUGHBLOCK)
 
 // Deaf
 
@@ -497,7 +497,7 @@
 
 /mob/living/proc/CureDeaf()
 	disabilities &= ~DEAF
-	CureIfHasDisability(GLOB.deafblock)
+	CureIfHasDisability(DEAFBLOCK)
 
 // Epilepsy
 
@@ -506,7 +506,7 @@
 
 /mob/living/proc/CureEpilepsy()
 	disabilities &= ~EPILEPSY
-	CureIfHasDisability(GLOB.epilepsyblock)
+	CureIfHasDisability(EPILEPSYBLOCK)
 
 // Mute
 
@@ -515,7 +515,7 @@
 
 /mob/living/proc/CureMute()
 	disabilities &= ~MUTE
-	CureIfHasDisability(GLOB.muteblock)
+	CureIfHasDisability(MUTEBLOCK)
 
 // Nearsighted
 
@@ -531,7 +531,7 @@
 	. = val_change ? STATUS_UPDATE_NEARSIGHTED : STATUS_UPDATE_NONE
 	disabilities &= ~NEARSIGHTED
 	if(val_change && updating)
-		CureIfHasDisability(GLOB.glassesblock)
+		CureIfHasDisability(GLASSESBLOCK)
 		update_nearsighted_effects()
 
 // Nervous
@@ -541,7 +541,7 @@
 
 /mob/living/proc/CureNervous()
 	disabilities &= ~NERVOUS
-	CureIfHasDisability(GLOB.nervousblock)
+	CureIfHasDisability(NERVOUSBLOCK)
 
 // Tourettes
 
@@ -550,7 +550,7 @@
 
 /mob/living/proc/CureTourettes()
 	disabilities &= ~TOURETTES
-	CureIfHasDisability(GLOB.twitchblock)
+	CureIfHasDisability(TWITCHBLOCK)
 
 /mob/living/proc/CureIfHasDisability(block)
 	if(dna && dna.GetSEState(block))

@@ -32664,6 +32664,11 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/machinery/camera{
+	c_tag = "Dormitories Toilets";
+	dir = 1;
+	network = list("SS13")
+	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
@@ -35903,6 +35908,11 @@
 	dir = 2;
 	pixel_y = 24
 	},
+/obj/machinery/camera{
+	c_tag = "Central Hallway North-West";
+	dir = 2;
+	network = list("SS13")
+	},
 /turf/simulated/floor/plasteel,
 /area/crew_quarters/locker)
 "bns" = (
@@ -37908,11 +37918,8 @@
 /turf/simulated/floor/plating,
 /area/hallway/secondary/exit)
 "brN" = (
-/obj/machinery/door/window/northleft{
-	name = "Locker Beds"
-	},
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "brO" = (
 /turf/simulated/shuttle/wall{
 	icon_state = "swall12";
@@ -38164,7 +38171,7 @@
 	},
 /obj/item/bedsheet,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bsu" = (
 /obj/effect/spawner/window/reinforced,
 /obj/structure/cable{
@@ -38860,7 +38867,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/purple,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bub" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/machinery/portable_atmospherics/canister/air,
@@ -40261,14 +40268,11 @@
 /turf/simulated/floor/plasteel,
 /area/bridge)
 "bwT" = (
-/obj/machinery/door/window/northleft{
-	name = "Locker Beds"
-	},
 /turf/simulated/floor/plasteel{
 	dir = 8;
 	icon_state = "barber"
 	},
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bwU" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -41031,10 +41035,7 @@
 /turf/simulated/floor/wood,
 /area/security/vacantoffice)
 "byj" = (
-/obj/machinery/camera{
-	c_tag = "Vacant Office";
-	dir = 1
-	},
+/obj/machinery/camera,
 /obj/structure/table/wood,
 /obj/item/folder/blue,
 /turf/simulated/floor/wood,
@@ -41723,7 +41724,7 @@
 	dir = 8;
 	icon_state = "barber"
 	},
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bzz" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin{
@@ -41734,7 +41735,7 @@
 	dir = 8;
 	icon_state = "barber"
 	},
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bzA" = (
 /obj/machinery/washing_machine,
 /obj/structure/window/reinforced{
@@ -41745,7 +41746,7 @@
 	dir = 8;
 	icon_state = "barber"
 	},
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bzB" = (
 /obj/structure/rack{
 	dir = 8;
@@ -41761,6 +41762,13 @@
 	icon_state = "2-4"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/item/stack/sheet/cardboard{
+	amount = 30
+	},
 /turf/simulated/floor/plasteel,
 /area/quartermaster/storage)
 "bzD" = (
@@ -42827,7 +42835,7 @@
 	dir = 8;
 	icon_state = "barber"
 	},
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bBR" = (
 /obj/structure/grille,
 /obj/structure/window/full/shuttle{
@@ -42860,7 +42868,7 @@
 	dir = 8;
 	icon_state = "barber"
 	},
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bBV" = (
 /obj/machinery/door/airlock/shuttle{
 	aiControlDisabled = 1;
@@ -43070,6 +43078,10 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/rack{
+	dir = 8;
+	layer = 2.9
+	},
 /turf/simulated/floor/plasteel,
 /area/quartermaster/storage)
 "bCw" = (
@@ -43780,7 +43792,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/wall,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "bDQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -43973,7 +43985,10 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/structure/closet/crate/medical,
+/obj/structure/rack{
+	dir = 8;
+	layer = 2.9
+	},
 /turf/simulated/floor/plasteel,
 /area/quartermaster/storage)
 "bEj" = (
@@ -44161,6 +44176,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/structure/rack{
+	dir = 8;
+	layer = 2.9
 	},
 /turf/simulated/floor/plasteel,
 /area/quartermaster/storage)
@@ -44490,6 +44509,7 @@
 	pixel_y = -32
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/telepad_cargo,
 /turf/simulated/floor/plasteel,
 /area/quartermaster/storage)
 "bFr" = (
@@ -46281,7 +46301,6 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/obj/machinery/telepad_cargo,
 /turf/simulated/floor/plasteel{
 	dir = 8;
 	icon_state = "brown"
@@ -96351,11 +96370,8 @@
 /obj/structure/shuttle/engine/propulsion{
 	tag = "icon-propulsion (NORTH)";
 	icon_state = "propulsion";
-	dir = 1;
-	step_x = 0;
-	step_y = 0
+	dir = 1
 	},
-/turf/space,
 /turf/simulated/shuttle/wall{
 	dir = 8;
 	icon_state = "diagonalWall3"
@@ -96444,9 +96460,8 @@
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "gVl" = (
-/turf/space,
 /turf/simulated/shuttle/wall{
 	dir = 4;
 	icon_state = "diagonalWall3"
@@ -96456,7 +96471,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "hek" = (
 /obj/machinery/computer{
 	desc = "A computer long since rendered non-functional due to lack of maintenance. Spitting out error messages.";
@@ -96507,7 +96522,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "iaC" = (
 /obj/item/flashlight/flare,
 /obj/item/flashlight/flare,
@@ -96561,7 +96576,6 @@
 /turf/simulated/floor/plating/airless,
 /area/space/nearstation)
 "iAO" = (
-/turf/space,
 /turf/simulated/shuttle/wall{
 	icon_state = "swall_f6";
 	dir = 2
@@ -96632,7 +96646,7 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "iZL" = (
 /obj/effect/decal/remains/human{
 	desc = "This guy seemed to have died in terrible way! Half his remains are dust.";
@@ -96691,6 +96705,11 @@
 	icon_state = "wall3"
 	},
 /area/shuttle/tsf)
+"jAQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/medical,
+/turf/simulated/floor/plasteel,
+/area/quartermaster/storage)
 "jCF" = (
 /obj/machinery/door/airlock/highsecurity{
 	locked = 1;
@@ -97032,7 +97051,6 @@
 	},
 /area/shuttle/tsf)
 "nau" = (
-/turf/space,
 /turf/simulated/shuttle/wall{
 	dir = 1;
 	icon_state = "diagonalWall3"
@@ -97141,6 +97159,10 @@
 	icon_state = "floor4"
 	},
 /area/shuttle/tsf)
+"opX" = (
+/obj/structure/ore_box,
+/turf/simulated/floor/plasteel,
+/area/quartermaster/miningdock)
 "owE" = (
 /obj/structure/barricade/wooden/crude,
 /obj/machinery/door/airlock{
@@ -97193,7 +97215,7 @@
 	},
 /obj/structure/coatrack,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "puu" = (
 /obj/structure/bed/dogbed/garronte,
 /mob/living/simple_animal/friendly/owl,
@@ -97328,14 +97350,13 @@
 /obj/structure/bed,
 /obj/item/bedsheet/red,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "qIy" = (
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/shuttle/tsf)
 "qKs" = (
-/turf/space,
 /turf/simulated/shuttle/wall{
 	dir = 8;
 	icon_state = "diagonalWall3"
@@ -97345,7 +97366,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/green,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "qOQ" = (
 /obj/structure/barricade/wooden/crude,
 /turf/simulated/shuttle/floor{
@@ -97359,6 +97380,11 @@
 "qXN" = (
 /obj/effect/landmark{
 	name = "blobstart"
+	},
+/obj/machinery/camera{
+	c_tag = "Locker Room Toilets";
+	dir = 8;
+	network = list("SS13")
 	},
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";
@@ -97390,9 +97416,14 @@
 	icon_state = "floor4"
 	},
 /area/shuttle/tsf)
-"rgm" = (
-/turf/simulated/floor/carpet,
-/area/maintenance/port)
+"rnE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/turf/simulated/floor/plasteel,
+/area/quartermaster/storage)
 "rvO" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/light{
@@ -97486,7 +97517,6 @@
 	},
 /area/shuttle/tsf)
 "spK" = (
-/turf/space,
 /turf/simulated/shuttle/wall{
 	icon_state = "diagonalWall3"
 	},
@@ -97505,7 +97535,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
 /turf/simulated/floor/carpet,
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "suH" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/vomit,
@@ -97527,11 +97557,8 @@
 /obj/structure/shuttle/engine/propulsion{
 	tag = "icon-propulsion (NORTH)";
 	icon_state = "propulsion";
-	dir = 1;
-	step_x = 0;
-	step_y = 0
+	dir = 1
 	},
-/turf/space,
 /turf/simulated/shuttle/wall{
 	dir = 1;
 	icon_state = "diagonalWall3"
@@ -97918,11 +97945,16 @@
 	},
 /area/shuttle/tsf)
 "wvO" = (
+/obj/machinery/camera{
+	c_tag = "Brig Prison Hallway East";
+	dir = 4;
+	network = list("Prison","SS13")
+	},
 /turf/simulated/floor/plasteel{
 	dir = 8;
 	icon_state = "barber"
 	},
-/area/maintenance/port)
+/area/crew_quarters/locker)
 "wCG" = (
 /obj/structure/ore_box,
 /turf/simulated/shuttle/floor{
@@ -98045,7 +98077,6 @@
 /turf/space,
 /area/space/nearstation)
 "xAQ" = (
-/turf/space,
 /turf/simulated/shuttle/wall{
 	icon_state = "swall_f5";
 	dir = 2
@@ -115998,7 +116029,7 @@ bzU
 bBQ
 wvO
 bzz
-blQ
+blM
 bCo
 iye
 bKt
@@ -116253,9 +116284,9 @@ bsg
 bvW
 bnD
 bwT
-wvO
+bwT
 bzy
-blQ
+blM
 bCo
 qXN
 bKr
@@ -116510,10 +116541,10 @@ brv
 bwb
 eGR
 bBU
-wvO
+bwT
 bzA
-blQ
-blQ
+blM
+bvs
 bvs
 nOc
 bGW
@@ -116767,11 +116798,11 @@ bqx
 bwa
 bnD
 pcs
-rgm
+brN
 qNu
 hQN
 gWh
-blQ
+blM
 bKu
 bHb
 bMg
@@ -117024,9 +117055,9 @@ vLg
 mjb
 bAb
 brN
-rgm
-rgm
-rgm
+brN
+brN
+brN
 iYl
 bDP
 bKE
@@ -117285,7 +117316,7 @@ gVi
 ssS
 bua
 qCx
-bvH
+ivG
 bKy
 bxb
 bxb
@@ -119341,7 +119372,7 @@ bDx
 bEB
 bGY
 bIz
-byw
+jAQ
 bFp
 bFm
 bMi
@@ -119598,7 +119629,7 @@ byv
 bEH
 xiQ
 fdZ
-byw
+rnE
 bFq
 bFm
 bxb
@@ -120129,8 +120160,8 @@ cam
 cbI
 cdy
 cff
+opX
 cir
-cfb
 cfb
 cnS
 cno
@@ -141532,7 +141563,7 @@ qIy
 lpX
 udF
 qIy
-ahs
+spK
 aaa
 aaa
 aaa
@@ -141790,7 +141821,7 @@ fmE
 sFz
 fmE
 qIy
-ahs
+spK
 aaa
 aaa
 aaa

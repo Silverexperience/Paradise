@@ -15,30 +15,30 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
-GLOBAL_LIST_EMPTY(teleportlocs)
+var/list/teleportlocs = list()
 /hook/startup/proc/process_teleport_locs()
 	for(var/area/AR in world)
 		if(AR.no_teleportlocs) continue
-		if(GLOB.teleportlocs.Find(AR.name)) continue
+		if(teleportlocs.Find(AR.name)) continue
 		var/turf/picked = safepick(get_area_turfs(AR.type))
 		if(picked && is_station_level(picked.z))
-			GLOB.teleportlocs += AR.name
-			GLOB.teleportlocs[AR.name] = AR
+			teleportlocs += AR.name
+			teleportlocs[AR.name] = AR
 
-	GLOB.teleportlocs = sortAssoc(GLOB.teleportlocs)
+	teleportlocs = sortAssoc(teleportlocs)
 
 	return 1
 
-GLOBAL_LIST_EMPTY(ghostteleportlocs)
+var/list/ghostteleportlocs = list()
 /hook/startup/proc/process_ghost_teleport_locs()
 	for(var/area/AR in world)
-		if(GLOB.ghostteleportlocs.Find(AR.name)) continue
+		if(ghostteleportlocs.Find(AR.name)) continue
 		var/list/turfs = get_area_turfs(AR.type)
 		if(turfs.len)
-			GLOB.ghostteleportlocs += AR.name
-			GLOB.ghostteleportlocs[AR.name] = AR
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
 
-	GLOB.ghostteleportlocs = sortAssoc(GLOB.ghostteleportlocs)
+	ghostteleportlocs = sortAssoc(ghostteleportlocs)
 
 	return 1
 
@@ -2297,7 +2297,7 @@ GLOBAL_LIST_EMPTY(ghostteleportlocs)
 */
 
 // CENTCOM
-GLOBAL_LIST_INIT(centcom_areas, list(
+var/list/centcom_areas = list (
 	/area/centcom,
 	/area/shuttle/escape_pod1/centcom,
 	/area/shuttle/escape_pod2/centcom,
@@ -2306,10 +2306,10 @@ GLOBAL_LIST_INIT(centcom_areas, list(
 	/area/shuttle/transport1,
 	/area/shuttle/administration/centcom,
 	/area/shuttle/specops/centcom,
-))
+)
 
 //SPACE STATION 13
-GLOBAL_LIST_INIT(the_station_areas, list(
+var/list/the_station_areas = list (
 	/area/shuttle/arrival,
 	/area/shuttle/escape,
 	/area/shuttle/escape_pod1/station,
@@ -2356,4 +2356,4 @@ GLOBAL_LIST_INIT(the_station_areas, list(
 	/area/turret_protected/ai_upload, //do not try to simplify to "/area/turret_protected" --rastaf0
 	/area/turret_protected/ai_upload_foyer,
 	/area/turret_protected/ai,
-	))
+)

@@ -50,7 +50,7 @@ deberan tener una linea de codigo demas para que funcionen "hispania_icon = TRUE
         "Vox" = 'icons/hispania/mob/suit.dmi',
         "Grey" = 'icons/hispania/mob/suit.dmi')
 
-/obj/item/clothing/suit/storage/labcoat/rdlarge
+/obj/item/clothing/suit/storage/labcoat/RDlarge
 	name = "Research Director's large labcoat"
 	desc = "One purple and long labcoat."
 	icon = 'icons/hispania/mob/suit.dmi'
@@ -62,7 +62,7 @@ deberan tener una linea de codigo demas para que funcionen "hispania_icon = TRUE
         "Grey" = 'icons/hispania/mob/suit.dmi')
 
 
-/obj/item/clothing/suit/storage/labcoat/rdlargeroundcut
+/obj/item/clothing/suit/storage/labcoat/RDlargeroundcut
 	name = "Research Director's large labcoat"
 	desc = "One purple and long labcoat."
 	icon = 'icons/hispania/mob/suit.dmi'

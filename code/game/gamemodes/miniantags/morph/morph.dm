@@ -135,7 +135,7 @@
 		for(var/atom/movable/AM in src)
 			AM.forceMove(loc)
 			if(prob(90))
-				step(AM, pick(GLOB.alldirs))
+				step(AM, pick(alldirs))
 	// Only execute the below if we successfully died
 	if(!.)
 		return FALSE
