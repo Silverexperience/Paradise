@@ -2,6 +2,7 @@
 #define isrune(A) (istype(A, /obj/effect/rune))
 #define adjustessence(A) (istype(A, /obj/effect/rune))
 
+// Carta de tarot
 /obj/item/nullrod/holy_tarot
 	name = "a holy tarot card"
 	desc = "For all your holy needs!"
@@ -84,6 +85,7 @@
 	if(used)
 		. += "<span class='notice'>[used_message]</span>"
 
+//Guardian
 /mob/living/simple_animal/hostile/guardian/holy
 	melee_damage_lower = 0
 	melee_damage_upper = 0
