@@ -24,7 +24,7 @@
 /obj/item/nullrod/holy_tarot/attack_self(mob/living/user)
 	if(user.mind.isholy == FALSE)
 		to_chat(user, "[ling_failure]")
-		user.adjustBruteLoss(15,robotic=15)
+		user.adjustBruteLoss(15)
 		return
 	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.living_mob_list)
 		if(G.summoner == user)
@@ -134,8 +134,8 @@
 				to_chat(src, "<span class='danger'>You cant heal your summoner</span>")
 				return
 			if(heal_cooldown < 5)
-				C.adjustBruteLoss(-5, robotic=1)
-				C.adjustFireLoss(-5, robotic=1)
+				C.adjustBruteLoss(-5)
+				C.adjustFireLoss(-5)
 				C.adjustOxyLoss(-5)
 				C.adjustToxLoss(-5)
 				heal_cooldown = heal_cooldown + 1
