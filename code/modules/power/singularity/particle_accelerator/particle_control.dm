@@ -238,6 +238,11 @@
 			part.update_icon()
 	else
 		use_power = IDLE_POWER_USE
+		///Validacion
+		msg_admin_attack("PA Control Computer turned OFF by [key_name_admin(usr)]", ATKLOG_FEW)
+		log_game("PA Control Computer turned OFF by [key_name(usr)] in ([x],[y],[z])")
+		use_log += text("\[[time_stamp()]\] <font color='red'>[key_name(usr)] has turned off the PA Control Computer.</font>")
+		///Fin de Validacion
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = null
 			part.powered = 0
