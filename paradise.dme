@@ -1290,6 +1290,7 @@
 #include "code\HISPANIA\modules\mob\living\silicon\robot\robot.dm"
 #include "code\HISPANIA\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "code\HISPANIA\modules\mob\living\simple_animal\kiwi.dm"
+#include "code\HISPANIA\modules\mob\living\simple_animal\simple_animal.dm"
 #include "code\HISPANIA\modules\mob\living\simple_animal\friendly\dog.dm"
 #include "code\HISPANIA\modules\mob\living\simple_animal\friendly\duck.dm"
 #include "code\HISPANIA\modules\mob\living\simple_animal\friendly\owl.dm"
