@@ -499,9 +499,8 @@
 	if(pcollar)
 		. |= pcollar.GetAccess()
 
-/* Se transporta a hispania para agregar que no se puedan mover durmiendo.
 /mob/living/simple_animal/update_canmove(delay_action_updates = 0)
-	if(paralysis || stunned || IsWeakened() || stat || resting)
+	if(paralysis || stunned || IsWeakened() || stat || resting || sleeping) //Se le añade sleeping para que no se puedan mover durmiendo.
 		drop_r_hand()
 		drop_l_hand()
 		canmove = 0
@@ -516,7 +515,6 @@
 	if(!delay_action_updates)
 		update_action_buttons_icon()
 	return canmove
-*/
 
 /mob/living/simple_animal/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
