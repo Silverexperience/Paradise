@@ -1,6 +1,5 @@
 #define isrevenant(A) (istype(A, /mob/living/simple_animal/revenant))
 #define isrune(A) (istype(A, /obj/effect/rune))
-#define adjustessence(A) (istype(A, /obj/effect/rune))
 
 // Carta de tarot
 /obj/item/nullrod/holy_tarot
