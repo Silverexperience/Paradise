@@ -148,7 +148,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	is_supply = 1
-	supervisors = "the quartermaster"
+	supervisors = "Quartermaster"
 	department_head = list("Head of Personnel")
 	selection_color = "#dddddd"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
@@ -174,10 +174,10 @@
 	total_positions = 6
 	spawn_positions = 8
 	is_supply = 1
-	supervisors = "the quartermaster"
+	supervisors = "Quartermaster"
 	department_head = list("Head of Personnel")
 	selection_color = "#dddddd"
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MINING, ACCESS_MINT, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
 	alt_titles = list("Spelunker")
 	outfit = /datum/outfit/job/mining
@@ -218,7 +218,7 @@
 		/obj/item/kitchen/knife/combat/survival=1,
 		/obj/item/mining_voucher=1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser=1,
-///	/obj/item/gun/energy/kinetic_accelerator=1,\  //Genera Runtime Error al dar un KA a un muerto en Ruina.
+		/obj/item/gun/energy/kinetic_accelerator=1,\
 		/obj/item/stack/marker_beacon/ten=1
 	)
 
