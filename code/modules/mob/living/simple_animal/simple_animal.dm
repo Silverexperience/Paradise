@@ -500,7 +500,7 @@
 		. |= pcollar.GetAccess()
 
 /mob/living/simple_animal/update_canmove(delay_action_updates = 0)
-	if(paralysis || stunned || IsWeakened() || stat || resting || sleeping) //Se le añade sleeping para que no se puedan mover durmiendo.
+	if(paralysis || stunned || IsWeakened() || stat || resting || sleeping) //Se le pone sleeping para que no se puedan mover durmiendo.
 		drop_r_hand()
 		drop_l_hand()
 		canmove = 0
