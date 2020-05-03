@@ -98,7 +98,7 @@
 	return ..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
-	if(roundstart_quirks.len)
+	if(current.roundstart_quirks.len)
 		for(var/datum/quirk/Q in current.roundstart_quirks)
 			if(current.has_quirk(Q))
 				roundstart_quirks += Q
