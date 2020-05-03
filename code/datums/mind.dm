@@ -100,6 +100,7 @@
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	var/datum/atom_hud/antag/hud_to_transfer = antag_hud //we need this because leave_hud() will clear this list
 	var/mob/living/old_current = current
+	var/list/old_roundstart_quirks = roundstart_quirks
 	if(!istype(new_character))
 		log_runtime(EXCEPTION("transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob."), src)
 	if(current)					//remove ourself from our old body's mind variable
@@ -125,7 +126,7 @@
 		A.on_body_transfer(old_current, current)
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
-	transfer_quirks(new_character)
+	transfer_quirks(new_character, old_roundstart_quirks)
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
 
