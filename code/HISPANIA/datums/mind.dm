@@ -1,0 +1,5 @@
+/datum/mind/proc/transfer_quirks(mob/living/new_character)
+	if(roundstart_quirks.len)
+		for(var/datum/quirk/Q in roundstart_quirks)
+			new_character.add_quirk(Q, TRUE)
+		new_character.mind.roundstart_quirks = list()
