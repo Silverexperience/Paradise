@@ -38,25 +38,7 @@
 	H.dna.SetSEState(GLOB.soberblock,1)
 	genemutcheck(H, GLOB.soberblock, null, MUTCHK_FORCED)
 	H.dna.default_blocks.Add(GLOB.soberblock)
-	H.check_mutations = 1
-
-/datum/quirk/mimo
-	name = "Mimo de nacimiento"
-	desc = "Tienes extrañas habilidades."
-	value = 1
-	gain_text = "<span class='notice'>Eres un rarito de mierda.</span>"
-	lose_text = "<span class='notice'>Ya no eres tan raro pero sientes que te falta algo.</span>"
-	medical_record_text = "El paciente solo habla de mechas y lo bien que puede conducirlos."
-	class = "SOBRENATURAL"
-	subclass = "MIMO"
-	etiqueta = "SPELL"
-
-/datum/quirk/mimo/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall(null))
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak(null))
-		H.mind.miming = 1
+	H.check_mutations = TRUE
 
 /datum/quirk/cirujano
 	name = "Crujano Veterano"

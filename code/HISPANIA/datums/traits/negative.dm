@@ -22,28 +22,19 @@
 	subclass = "TOOLS"
 	etiqueta = "SKILL"
 
-/datum/quirk/payaso
-	name = "Naciste payaso"
-	desc = "Parece que tienes un cromosoma extra, un cromosoma extra chistoso"
+/datum/quirk/torpeza
+	name = "Naciste evan"
+	desc = "Parece que eres tan torpe como evan, debes tener algun cromosoma extra"
 	value = -1
-	gain_text = "<span class='danger'>Todas tus acciones son chistosas!</span>"
-	lose_text = "<span class='notice'>No todos pueden ser payasos</span>"
-	medical_record_text = "Al paciente le cuesta realizar habilidades manuales."
+	gain_text = "<span class='danger'>Eres evan, cuidado al caminar!</span>"
+	lose_text = "<span class='notice'>Pues esto de trabajar no era nada del otro mundo.</span>"
+	medical_record_text = "Al paciente le cuesta realizar cualquier habilidad motriz."
 	class = "INGENERIA"
 	subclass = "TOOLS"
 
-/datum/quirk/payaso/add()
+/datum/quirk/torpeza/add()
 	var/mob/living/carbon/human/H = quirk_holder
-	if(ismachine(H))
-		var/obj/item/organ/internal/cyberimp/brain/clown_voice/implant = new
-		implant.insert(H)
-
 	H.dna.SetSEState(GLOB.clumsyblock, TRUE)
 	genemutcheck(H, GLOB.clumsyblock, null, MUTCHK_FORCED)
 	H.dna.default_blocks.Add(GLOB.clumsyblock)
-	if(!ismachine(H))
-		H.dna.SetSEState(GLOB.comicblock, TRUE)
-		genemutcheck(H, GLOB.comicblock, null, MUTCHK_FORCED)
-		H.dna.default_blocks.Add(GLOB.comicblock)
 	H.check_mutations = TRUE
-	H.add_language("Clownish")

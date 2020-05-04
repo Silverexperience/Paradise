@@ -1044,7 +1044,7 @@
 	handlerelaymove(user, direction)
 
 /obj/spacepod/proc/handlerelaymove(mob/user, direction)
-	if(!HAS_TRAIT(user, TRAIT_POD_PILOT)
+	if(!HAS_TRAIT(user, TRAIT_POD_PILOT) && ishuman(user))
 		to_chat(user, "<span class='warning'>No logras hacer que esta maldita chatarra avance.</span>")
 		return FALSE
 	if(world.time < next_move)

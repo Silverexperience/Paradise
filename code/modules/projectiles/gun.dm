@@ -176,6 +176,9 @@
 	var/bonus_spread = 0
 	var/loop_counter = 0
 	//HISPATRAITS
+	var/dual_mod = 24 //para el trait de disparo dual
+	if(HAS_TRAIT(user, TRAIT_DUAL_SHOOTER)) // si tiene esto dipara mejor a dos armas
+		dual_mod = dual_mod/2  //disparas con el doble de precision con dos armas si tienes este trait
 	if(!HAS_TRAIT(user, TRAIT_SHOOTER) && ishuman(user)) //si no lo tiene no dispara bien
 		var/gun_type_weight = weapon_weight //el peso del arma puede ser cero
 		if(weapon_weight == 0)
@@ -188,7 +191,7 @@
 			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
 				continue
 			else if(G.can_trigger_gun(user))
-				bonus_spread += 24 * G.weapon_weight
+				bonus_spread += dual_mod * G.weapon_weight //cambiado por hispania para el trait de dual shoot
 				loop_counter++
 				addtimer(CALLBACK(G, .proc/process_fire, target, user, 1, params, null, bonus_spread), loop_counter)
 

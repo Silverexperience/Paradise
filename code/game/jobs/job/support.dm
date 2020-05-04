@@ -363,7 +363,7 @@
 		uniform = /obj/item/clothing/under/sexymime
 		suit = /obj/item/clothing/mask/gas/sexymime
 
-/*/datum/outfit/job/mime/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/mime/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
@@ -371,7 +371,7 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall(null))
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak(null))
-		H.mind.miming = 1*/ //AHORA ES UN HISPATRAIT
+		H.mind.miming = 1
 
 
 
