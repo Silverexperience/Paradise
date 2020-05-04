@@ -64,5 +64,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PACIFISM			"pacifism"
 #define TRAIT_WATERBREATH       "waterbreathing"
 
+//TRAIT HISPANIA
+#define TRAIT_AGEUSIA			"ageusia"
+// FIN TRAIT HISPANIA
+
 // common trait sources
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention

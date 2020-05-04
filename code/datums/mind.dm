@@ -81,8 +81,6 @@
 
 	var/list/learned_recipes //List of learned recipe TYPES.
 
-	var/list/roundstart_quirks = list()
-
 /datum/mind/New(new_key)
 	key = new_key
 	soulOwner = src
@@ -100,7 +98,6 @@
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	var/datum/atom_hud/antag/hud_to_transfer = antag_hud //we need this because leave_hud() will clear this list
 	var/mob/living/old_current = current
-	var/list/old_roundstart_quirks = roundstart_quirks
 	if(!istype(new_character))
 		log_runtime(EXCEPTION("transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob."), src)
 	if(current)					//remove ourself from our old body's mind variable
@@ -121,12 +118,12 @@
 		new_character.mind.current = null
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
+	old_current.transfer_trait_datums(current) //para transfererir quirks
 	for(var/a in antag_datums)	//Makes sure all antag datums effects are applied in the new body
 		var/datum/antagonist/A = a
 		A.on_body_transfer(old_current, current)
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
-	transfer_quirks(new_character, old_roundstart_quirks)
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
 

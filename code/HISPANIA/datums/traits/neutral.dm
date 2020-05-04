@@ -6,3 +6,4 @@
 	gain_text = "<span class='notice'>You can't taste anything!</span>"
 	lose_text = "<span class='notice'>You can taste again!</span>"
 	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
+	class = "SABOR"
