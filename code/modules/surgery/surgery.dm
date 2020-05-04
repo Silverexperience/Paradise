@@ -105,7 +105,8 @@
 	if(do_after(user, time * speed_mod, target = target))
 		var/advance = 0
 		var/prob_chance = 100
-
+		if(!HAS_TRAIT(user, TRAIT_CIRUJANO))
+			prob_chance = 50
 		if(implement_type)	//this means it isn't a require nd or any item step.
 			prob_chance = allowed_tools[implement_type]
 		prob_chance *= get_location_modifier(target)

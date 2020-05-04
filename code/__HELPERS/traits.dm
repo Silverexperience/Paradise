@@ -68,10 +68,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_AGEUSIA					"ageusia"
 #define TRAIT_MECH_PILOT				"mech_pilot"
 #define TRAIT_SHOOTER					"shooter"
-#define TRAIT_EVAN_INGENIERO			"evan"
+#define TRAIT_NO_TOOLS					"no_herramientas"
 #define TRAIT_RESITENCIA_ALCOHOLICA		"no_borracheras"
-#define TRAIT_PAYASO					"payaso"
-#define TRAIT_MIMO						"mimo"
+#define TRAIT_CIRUJANO					"cirujano"
+#define TRAIT_POD_PILOT					"piloto de pods"
 // FIN TRAIT HISPANIA
 
 // common trait sources

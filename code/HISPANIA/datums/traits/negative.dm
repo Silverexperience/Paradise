@@ -1,41 +1,31 @@
 /datum/quirk/nonviolent
 	name = "Pacifista"
 	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
-	value = -2
+	value = -3 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
 	mob_trait = TRAIT_PACIFISM
 	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
 	lose_text = "<span class='notice'>Puedes defenderte a ti mismo nuevamente.</span>"
 	medical_record_text = "El paciente es inusualmente pacifico y no hará nada que pueda dañar físicamente a otros."
 	class = "SEGURIDAD"
 	subclass = "DISPARAR"
+	etiqueta = "SKILL"
 
 /datum/quirk/notools
 	name = "Manos inutiles"
 	desc = "Tienes las mimsas habilidades de construccion que Evan"
 	value = -1
-	mob_trait = TRAIT_EVAN_INGENIERO
+	mob_trait = TRAIT_NO_TOOLS
 	gain_text = "<span class='danger'>Tus habilidades manuales son basura!</span>"
 	lose_text = "<span class='notice'>Al parecer esto de la mecanica no era tan dificil</span>"
 	medical_record_text = "Al paciente le cuesta realizar habilidades manuales."
 	class = "INGENERIA"
 	subclass = "TOOLS"
-
-/datum/quirk/notools
-	name = "Manos inutiles"
-	desc = "Tienes las mimsas habilidades de construccion que Evan"
-	value = -1
-	mob_trait = TRAIT_EVAN_INGENIERO
-	gain_text = "<span class='danger'>Tus habilidades manuales son basura!</span>"
-	lose_text = "<span class='notice'>Al parecer esto de la mecanica no era tan dificil.</span>"
-	medical_record_text = "Al paciente le cuesta realizar habilidades manuales."
-	class = "INGENERIA"
-	subclass = "TOOLS"
+	etiqueta = "SKILL"
 
 /datum/quirk/payaso
 	name = "Naciste payaso"
 	desc = "Parece que tienes un cromosoma extra, un cromosoma extra chistoso"
 	value = -1
-	mob_trait = TRAIT_EVAN_INGENIERO
 	gain_text = "<span class='danger'>Todas tus acciones son chistosas!</span>"
 	lose_text = "<span class='notice'>No todos pueden ser payasos</span>"
 	medical_record_text = "Al paciente le cuesta realizar habilidades manuales."
