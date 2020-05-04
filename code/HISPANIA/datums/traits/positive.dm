@@ -86,7 +86,7 @@
 	name = "Tirador PRO"
 	desc = "Eres un tirador experto."
 	value = 1
-	mob_trait = TRAIT_SHOOTER
+	mob_trait = TRAIT_DUAL_SHOOTER
 	gain_text = "<span class='notice'>Por qué disperar con un arma cuando puedes disparar con dos?.</span>"
 	lose_text = "<span class='notice'>Al parecer disprar con dos armas no era tan facil despues de todo.</span>"
 	medical_record_text = "El paciente tiene manos de acero."

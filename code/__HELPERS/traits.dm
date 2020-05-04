@@ -72,6 +72,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_RESITENCIA_ALCOHOLICA		"no_borracheras"
 #define TRAIT_CIRUJANO					"cirujano"
 #define TRAIT_POD_PILOT					"piloto de pods"
+#define TRAIT_DUAL_SHOOTER				"disparar con dos armas"
 // FIN TRAIT HISPANIA
 
 // common trait sources
