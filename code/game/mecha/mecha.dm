@@ -299,7 +299,7 @@
 
 	var/move_result = 0
 	var/move_type = 0
-	if(internal_damage & MECHA_INT_CONTROL_LOST)
+	if((internal_damage & MECHA_INT_CONTROL_LOST) || (ishuman(occupant) && !HAS_TRAIT(occupant, TRAIT_MECH_PILOT)))
 		move_result = mechsteprand()
 		move_type = MECHAMOVE_RAND
 	else if(dir != direction)
@@ -773,7 +773,7 @@
 
 
 /obj/mecha/crowbar_act(mob/user, obj/item/I)
-	if(state != 2 && state != 3 && !(state == 4 && (pilot_is_mmi() || istype(occupant, /mob/living/carbon))))
+	if(state != 2 && state != 3 && !(state == 4 && (pilot_is_mmi() || iscarbon(occupant))))
 		return
 	. = TRUE
 	if(!I.use_tool(src, user, 0, volume = I.tool_volume))

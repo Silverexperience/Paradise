@@ -133,6 +133,9 @@
 		O.emp_act(severity)
 
 /obj/item/gun/afterattack(atom/target, mob/living/user, flag, params)
+	if(HAS_TRAIT(user, TRAIT_GUNS_FOBIA))
+		to_chat("<span class='warning'>Tu fobia a las armas de fuego no te deja apretar el gatillo!</span>")
+		return
 	if(firing_burst)
 		return
 	if(flag) //It's adjacent, is the user, or is on the user's person

@@ -1,7 +1,7 @@
 /datum/quirk/nonviolent
 	name = "Pacifista"
 	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
-	value = -3 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
+	value = -2 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
 	mob_trait = TRAIT_PACIFISM
 	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
 	lose_text = "<span class='notice'>Puedes defenderte a ti mismo nuevamente.</span>"
@@ -38,3 +38,15 @@
 	genemutcheck(H, GLOB.clumsyblock, null, MUTCHK_FORCED)
 	H.dna.default_blocks.Add(GLOB.clumsyblock)
 	H.check_mutations = TRUE
+
+/datum/quirk/gusfobia
+	name = "Pacifista"
+	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
+	value = -1 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
+	mob_trait = TRAIT_GUNS_FOBIA
+	gain_text = "<span class='danger'>Recuerdas eso... disparos, no de nuevo!</span>"
+	lose_text = "<span class='notice'>Pues disparar es hasta divertido, quien lo diria.</span>"
+	medical_record_text = "El paciente tiene un trauma severo con las armas de fuego."
+	class = "SEGURIDAD"
+	subclass = "DISPARAR"
+	etiqueta = "SKILL"

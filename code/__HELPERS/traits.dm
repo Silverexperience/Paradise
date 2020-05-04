@@ -73,6 +73,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_CIRUJANO					"cirujano"
 #define TRAIT_POD_PILOT					"piloto de pods"
 #define TRAIT_DUAL_SHOOTER				"disparar con dos armas"
+#define TRAIT_GUNS_FOBIA				"fobia_a_las_armas"
 // FIN TRAIT HISPANIA
 
 // common trait sources
