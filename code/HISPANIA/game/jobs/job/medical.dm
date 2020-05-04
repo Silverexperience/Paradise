@@ -44,7 +44,7 @@
 	if(visualsOnly)
 		return
 
-//PARAMEDICO - JOB DE ROL
+//PARAMEDICO - JOB DE ESPECIAL
 /datum/outfit/job/paramedic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)

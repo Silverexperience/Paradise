@@ -1,27 +1,37 @@
-//HOS
+//HOS - HEAD
 /datum/outfit/job/hos/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
 	H.add_quirk(/datum/quirk/shooter)
 	H.add_quirk(/datum/quirk/mechpilot)
+	H.add_quirk(/datum/quirk/podpilot)
 
-//WARDEN
+//WARDEN - SUBJEFE
 /datum/outfit/job/warden/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
 	H.add_quirk(/datum/quirk/shooter)
 	H.add_quirk(/datum/quirk/mechpilot)
+	H.add_quirk(/datum/quirk/podpilot)
 
-//OFICIAL
+//OFICIAL - JOB COMPLETO
 /datum/outfit/job/officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
 	H.add_quirk(/datum/quirk/shooter)
+	H.add_quirk(/datum/quirk/mechpilot)
 
-//DETECTIVE
+//OFICIAL - JOB ESPECIAL
+/datum/outfit/job/officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	if(visualsOnly)
+		return
+	H.add_quirk(/datum/quirk/mechpilot)
+
+//DETECTIVE - JOB ROL
 /datum/outfit/job/detective/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
@@ -29,11 +39,9 @@
 	H.add_quirk(/datum/quirk/shooter)
 	H.add_quirk(/datum/quirk/borrachoexperto)
 
-//PILOTO
-/* piloto? este tendrá el quir de pilotar pods en el futuro, por eso no tiene este. si le doy este le quitare otra cosa
+//PILOTO - JOB ESPECIAL
 /datum/outfit/job/pilot/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
-	H.add_quirk(/datum/quirk/shooter)
-*/ // cual piloto?
+	H.add_quirk(/datum/quirk/podpilot)

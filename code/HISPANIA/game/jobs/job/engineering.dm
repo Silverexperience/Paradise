@@ -11,7 +11,7 @@
 		return
 	H.add_quirk(/datum/quirk/mechpilot)
 
-//MECANICO - JOB DE ROL
+//ATMOS - JOB DE ROL
 /datum/outfit/job/atmos/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
