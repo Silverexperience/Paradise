@@ -28,7 +28,7 @@
 		/obj/item/toy/russian_revolver = 1
 	)
 
-/datum/outfit/job/bartender/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/*/datum/outfit/job/bartender/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
@@ -37,7 +37,7 @@
 	genemutcheck(H, GLOB.soberblock, null, MUTCHK_FORCED)
 	H.dna.default_blocks.Add(GLOB.soberblock)
 	H.check_mutations = 1
-
+*/ //MUEVO ESTO AL TRAIT DE INMUNIDAD
 
 
 /datum/job/chef
@@ -282,7 +282,7 @@
 		mask = /obj/item/clothing/mask/gas/clown_hat/sexy
 		uniform = /obj/item/clothing/under/rank/clown/sexy
 
-/datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/*/datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE) //HISPATRAIT
 	. = ..()
 	if(visualsOnly)
 		return
@@ -300,6 +300,7 @@
 		H.dna.default_blocks.Add(GLOB.comicblock)
 	H.check_mutations = TRUE
 	H.add_language("Clownish")
+*/ //HISPATRAIT
 
 //action given to antag clowns
 /datum/action/innate/toggle_clumsy
@@ -362,7 +363,7 @@
 		uniform = /obj/item/clothing/under/sexymime
 		suit = /obj/item/clothing/mask/gas/sexymime
 
-/datum/outfit/job/mime/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/*/datum/outfit/job/mime/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
@@ -370,7 +371,7 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall(null))
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak(null))
-		H.mind.miming = 1
+		H.mind.miming = 1*/ //AHORA ES UN HISPATRAIT
 
 
 

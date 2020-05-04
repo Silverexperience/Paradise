@@ -65,7 +65,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WATERBREATH       "waterbreathing"
 
 //TRAIT HISPANIA
-#define TRAIT_AGEUSIA			"ageusia"
+#define TRAIT_AGEUSIA					"ageusia"
+#define TRAIT_MECH_PILOT				"mech_pilot"
+#define TRAIT_SHOOTER					"shooter"
+#define TRAIT_EVAN_INGENIERO			"evan"
+#define TRAIT_RESITENCIA_ALCOHOLICA		"no_borracheras"
+#define TRAIT_PAYASO					"payaso"
+#define TRAIT_MIMO						"mimo"
 // FIN TRAIT HISPANIA
 
 // common trait sources

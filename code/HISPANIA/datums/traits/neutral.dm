@@ -1,9 +1,10 @@
 /datum/quirk/no_taste
 	name = "Ageusia"
-	desc = "You can't taste anything! Toxic food will still poison you."
+	desc = "No puedes saborear nada! Las comidas de hace dos semanas te siguen dando indigestion."
 	value = 0
 	mob_trait = TRAIT_AGEUSIA
-	gain_text = "<span class='notice'>You can't taste anything!</span>"
-	lose_text = "<span class='notice'>You can taste again!</span>"
+	gain_text = "<span class='notice'>No puedes saborear nada!</span>"
+	lose_text = "<span class='notice'>Puedes saborear nuevamente!</span>"
 	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
-	class = "SABOR"
+	class = "BORRACHERA"
+	subclass = "SABOREAR"

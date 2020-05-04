@@ -144,14 +144,14 @@
 				suit = /obj/item/clothing/suit/storage/det_suit/forensics/blue
 				head = null
 
-/datum/outfit/job/detective/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/*/datum/outfit/job/detective/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
-
 	H.dna.SetSEState(GLOB.soberblock,1)
 	H.mutations += SOBER
 	H.check_mutations = 1
+*/ //movido a hispania para un hispatrait
 
 /datum/job/officer
 	title = "Security Officer"

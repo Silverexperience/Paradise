@@ -11,7 +11,8 @@
 	var/mood_quirk = FALSE //if true, this quirk affects mood and is unavailable if moodlets are disabled
 	var/mob_trait //if applicable, apply and remove this mob trait
 	var/mob/living/quirk_holder
-	var/class
+	var/class //INGENERIA, CIENCIAS, MEDICINA, SEGURIDAD, CONDUCIR, MINERIA ETC, cosas generales
+	var/subclass //TOOLS, MECH, POD, DISPARAR, ETC, COSAS MAS ESPECIFICAS, QUIZA TENGA QUE UNIR AMBAS CLASESS EN EL FUTURO
 
 /datum/quirk/New(mob/living/quirk_mob, spawn_effects)
 	..()

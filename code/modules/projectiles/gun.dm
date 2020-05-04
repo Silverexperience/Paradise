@@ -175,6 +175,13 @@
 	//DUAL WIELDING
 	var/bonus_spread = 0
 	var/loop_counter = 0
+	//HISPATRAITS
+	if(!HAS_TRAIT(user, TRAIT_SHOOTER) && ishuman(user)) //si no lo tiene no dispara bien
+		var/gun_type_weight = weapon_weight //el peso del arma puede ser cero
+		if(weapon_weight == 0)
+			gun_type_weight = 1
+		bonus_spread += 20 * gun_type_weight
+	//FIN HISPATRAITS
 	if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/gun/G in get_both_hands(H))
