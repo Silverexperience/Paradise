@@ -40,9 +40,9 @@
 	H.check_mutations = TRUE
 
 /datum/quirk/gusfobia
-	name = "Pacifista"
-	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
-	value = -2 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
+	name = "Guns fobia"
+	desc = "Le tienes fobia a las armas de fuego."
+	value = -1 //esto vale uno porque si alguien lo toma tambien puede tomar el poor_aim gratis
 	mob_trait = TRAIT_GUNS_FOBIA
 	gain_text = "<span class='danger'>Recuerdas eso... disparos, no de nuevo!</span>"
 	lose_text = "<span class='notice'>Pues disparar es hasta divertido, quien lo diria.</span>"
