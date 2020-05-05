@@ -61,7 +61,6 @@ deberan tener una linea de codigo demas para que funcionen "hispania_icon = TRUE
         "Vox" = 'icons/hispania/mob/suit.dmi',
         "Grey" = 'icons/hispania/mob/suit.dmi')
 
-
 /obj/item/clothing/suit/storage/labcoat/rdlargeroundcut
 	name = "Research Director's large labcoat"
 	desc = "One purple and long labcoat."
@@ -72,7 +71,6 @@ deberan tener una linea de codigo demas para que funcionen "hispania_icon = TRUE
 	sprite_sheets = list(
         "Vox" = 'icons/hispania/mob/suit.dmi',
         "Grey" = 'icons/hispania/mob/suit.dmi')
-
 
 /obj/item/clothing/suit/storage/labcoat/sciencelarge
 	name = "Scientist labcoat"
@@ -97,8 +95,6 @@ deberan tener una linea de codigo demas para que funcionen "hispania_icon = TRUE
         "Grey" = 'icons/hispania/mob/suit.dmi')
 
 ///Code and Sprites by Danaleja2005
-
-
 /obj/item/clothing/suit/storage/labcoat/rdlargeroundcutdark
 	name = "Research Director's large labcoat"
 	desc = "One purple dark long labcoat. Made by D&N Corp."
@@ -108,7 +104,6 @@ deberan tener una linea de codigo demas para que funcionen "hispania_icon = TRUE
 	sprite_sheets = list(
         "Vox" = 'icons/hispania/mob/suit.dmi',
         "Grey" = 'icons/hispania/mob/suit.dmi')
-
 
 /obj/item/clothing/suit/storage/labcoat/rdlargedark
 	name = "Research Director's large labcoat"

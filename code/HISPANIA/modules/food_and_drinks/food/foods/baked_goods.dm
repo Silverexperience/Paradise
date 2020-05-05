@@ -330,7 +330,6 @@ obj/item/reagent_containers/food/snacks/pancake/update_icon()
         else
             to_chat(user, "<span class='warning'>The stack is too high!</span>")
 
-
 //Toast//
 /obj/item/reagent_containers/food/snacks/toast
 	name = "toast"
@@ -342,9 +341,7 @@ obj/item/reagent_containers/food/snacks/pancake/update_icon()
 	tastes = list("toast" = 1)
 	bitesize = 3
 
-
 //ButterToast//
-
 /obj/item/reagent_containers/food/snacks/butter_toast
 	name = "buttered toast"
 	desc = "Butter lightly spread over a piece of toast."
