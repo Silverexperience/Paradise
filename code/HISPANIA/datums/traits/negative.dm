@@ -25,7 +25,7 @@
 //MISC - SKILLS
 /datum/quirk/notools
 	name = "Manos inutiles"
-	desc = "Tienes las mimsas habilidades de construccion que Evan"
+	desc = "Tienes las mimsas habilidades de construccion que... no sabes constuir nada"
 	value = -1
 	mob_trait = TRAIT_NO_TOOLS
 	gain_text = "<span class='danger'>Tus habilidades manuales son basura!</span>"
@@ -36,24 +36,23 @@
 	etiqueta = "SKILL"
 
 /datum/quirk/nocraft
-	name = "Manco"
-	desc = "Hace mucho perdiste una mano en un accidente."
+	name = "Craftear, que es eso?"
+	desc = "No puedes craftear nada."
 	value = -1
 	mob_trait = TRAIT_NO_CRAFT
-	gain_text = "<span class='danger'>No podrias ni construir un barco de papel</span>"
-	lose_text = "<span class='notice'>Esto de constuir no se te daba tan mal.</span>"
+	gain_text = "<span class='danger'>No podrias ni craftear un barco de papel</span>"
+	lose_text = "<span class='notice'>Esto del maincra no se te daba tan mal.</span>"
 	class = "INGENERIA"
 	subclass = "CRAFT"
 	etiqueta = "SKILL"
 
 //GENETICA
 /datum/quirk/torpeza
-	name = "Naciste evan"
-	desc = "Parece que eres tan torpe como evan, debes tener algun cromosoma extra"
+	name = "Torpeza"
+	desc = "Parece que eres tan torpe como nadie, debes tener algun cromosoma extra"
 	value = -1
 	gain_text = "<span class='danger'>Eres evan, cuidado al caminar!</span>"
 	lose_text = "<span class='notice'>Pues esto de trabajar no era nada del otro mundo.</span>"
-	medical_record_text = "Al paciente le cuesta realizar cualquier habilidad motriz."
 	class = "INGENERIA"
 	subclass = "TOOLS"
 

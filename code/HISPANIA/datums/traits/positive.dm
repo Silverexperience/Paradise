@@ -66,8 +66,8 @@
 //DISPARAR
 /datum/quirk/dualshooter
 	name = "Vaquero"
-	desc = "Eres un tirador experto."
-	value = 2
+	desc = "Eres mejor tirador a dos armas que cualquiera."
+	value = 1
 	mob_trait = TRAIT_DUAL_SHOOTER
 	gain_text = "<span class='notice'>Por qué disperar con un arma cuando puedes disparar con dos?.</span>"
 	lose_text = "<span class='notice'>Al parecer disprar con dos armas no era tan facil despues de todo.</span>"
@@ -80,8 +80,8 @@
 	desc = "Estás capacitado para manejrar armas grandes."
 	value = 1
 	mob_trait = TRAIT_SHOOTER
-	gain_text = "<span class='notice'>Tu punteria es muy mala.</span>"
-	lose_text = "<span class='notice'>Tu punteria aumenta!</span>"
+	gain_text = "<span class='notice'>Tu punteria aumenta!</span>"
+	lose_text = "<span class='notice'>Tu punteria ya no es lo que era.</span>"
 	class = "SEGURIDAD"
 	subclass = "DISPARAR"
 	etiqueta = "SKILL"
@@ -104,7 +104,7 @@
 
 //IMPLANTES
 /datum/quirk/nutriimplant
-	name = "Estomago fuerte"
+	name = "NutriImplante"
 	desc = "tienes implantado un implante de nutrición."
 	value = 1
 	gain_text = "<span class='notice'>Tienes un implante de nutricion en el cuerpo.</span>"
