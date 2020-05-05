@@ -1,7 +1,7 @@
 /datum/quirk/shooter
 	name = "Tirador PRO"
 	desc = "Eres un tirador experto."
-	value = 2
+	value = 1
 	mob_trait = TRAIT_SHOOTER
 	gain_text = "<span class='notice'>Tu punteria aumenta.</span>"
 	lose_text = "<span class='notice'>tu punteria ya no es lo que era!</span>"
