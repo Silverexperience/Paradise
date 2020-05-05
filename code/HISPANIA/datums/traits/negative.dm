@@ -1,3 +1,4 @@
+//DISPARAR
 /datum/quirk/nonviolent
 	name = "Pacifista"
 	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
@@ -10,6 +11,18 @@
 	subclass = "DISPARAR"
 	etiqueta = "SKILL"
 
+/datum/quirk/gusfobia
+	name = "Guns fobia"
+	desc = "Le tienes fobia a las armas de fuego."
+	value = -1 //esto vale uno porque si alguien lo toma tambien puede tomar el poor_aim gratis
+	mob_trait = TRAIT_GUNS_FOBIA
+	gain_text = "<span class='danger'>Recuerdas eso... disparos, no de nuevo!</span>"
+	lose_text = "<span class='notice'>Pues disparar es hasta divertido, quien lo diria.</span>"
+	class = "SEGURIDAD"
+	subclass = "DISPARAR"
+	etiqueta = "SKILL"
+
+//MISC - SKILLS
 /datum/quirk/notools
 	name = "Manos inutiles"
 	desc = "Tienes las mimsas habilidades de construccion que Evan"
@@ -22,6 +35,18 @@
 	subclass = "TOOLS"
 	etiqueta = "SKILL"
 
+/datum/quirk/nocraft
+	name = "Manco"
+	desc = "Hace mucho perdiste una mano en un accidente."
+	value = -1
+	mob_trait = TRAIT_NO_CRAFT
+	gain_text = "<span class='danger'>No podrias ni construir un barco de papel</span>"
+	lose_text = "<span class='notice'>Esto de constuir no se te daba tan mal.</span>"
+	class = "INGENERIA"
+	subclass = "CRAFT"
+	etiqueta = "SKILL"
+
+//GENETICA
 /datum/quirk/torpeza
 	name = "Naciste evan"
 	desc = "Parece que eres tan torpe como evan, debes tener algun cromosoma extra"
@@ -39,17 +64,6 @@
 	H.dna.default_blocks.Add(GLOB.clumsyblock)
 	H.check_mutations = TRUE
 
-/datum/quirk/gusfobia
-	name = "Guns fobia"
-	desc = "Le tienes fobia a las armas de fuego."
-	value = -1 //esto vale uno porque si alguien lo toma tambien puede tomar el poor_aim gratis
-	mob_trait = TRAIT_GUNS_FOBIA
-	gain_text = "<span class='danger'>Recuerdas eso... disparos, no de nuevo!</span>"
-	lose_text = "<span class='notice'>Pues disparar es hasta divertido, quien lo diria.</span>"
-	class = "SEGURIDAD"
-	subclass = "DISPARAR"
-	etiqueta = "SKILL"
-
 /datum/quirk/manco
 	name = "Manco"
 	desc = "Hace mucho perdiste una mano en un accidente."
@@ -65,25 +79,3 @@
 	var/picked_hand = pick("l_hand", "r_hand")
 	var/obj/item/organ/external/M = H.get_organ(picked_hand)
 	qdel(M)
-
-/datum/quirk/nocraft
-	name = "Manco"
-	desc = "Hace mucho perdiste una mano en un accidente."
-	value = -1
-	mob_trait = TRAIT_NO_CRAFT
-	gain_text = "<span class='danger'>No podrias ni construir un barco de papel</span>"
-	lose_text = "<span class='notice'>Esto de constuir no se te daba tan mal.</span>"
-	class = "INGENERIA"
-	subclass = "CRAFT"
-	etiqueta = "SKILL"
-
-/datum/quirk/poor_aim
-	name = "Tirador PRO"
-	desc = "Eres un tirador experto."
-	value = -1
-	mob_trait = TRAIT_POOR_AIM
-	gain_text = "<span class='notice'>Tu punteria es muy mala.</span>"
-	lose_text = "<span class='notice'>Tu punteria aumenta!</span>"
-	class = "SEGURIDAD"
-	subclass = "DISPARAR"
-	etiqueta = "SKILL"
