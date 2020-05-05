@@ -1,15 +1,3 @@
-/datum/quirk/shooter
-	name = "Tirador PRO"
-	desc = "Eres un tirador experto."
-	value = 1
-	mob_trait = TRAIT_SHOOTER
-	gain_text = "<span class='notice'>Tu punteria aumenta.</span>"
-	lose_text = "<span class='notice'>tu punteria ya no es lo que era!</span>"
-	medical_record_text = "El paciente tiene manos de acero."
-	class = "SEGURIDAD"
-	subclass = "DISPARAR"
-	etiqueta = "SKILL"
-
 /datum/quirk/mechpilot
 	name = "Piloto de mechas"
 	desc = "Conducir un ripley te es tan natural como caminar."
@@ -110,7 +98,7 @@
 
 /datum/quirk/llamaazul/add()
 	var/mob/living/carbon/human/H = quirk_holder
-    var/datum/martial_art/bscqc/theowo = new
-    theowo.teach(H)
+	var/datum/martial_art/bscqc/theowo = new
+	theowo.teach(H)
 
 

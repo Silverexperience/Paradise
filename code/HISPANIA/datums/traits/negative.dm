@@ -42,7 +42,7 @@
 /datum/quirk/gusfobia
 	name = "Pacifista"
 	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
-	value = -1 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
+	value = -2 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
 	mob_trait = TRAIT_GUNS_FOBIA
 	gain_text = "<span class='danger'>Recuerdas eso... disparos, no de nuevo!</span>"
 	lose_text = "<span class='notice'>Pues disparar es hasta divertido, quien lo diria.</span>"
@@ -75,4 +75,15 @@
 	lose_text = "<span class='notice'>Esto de constuir no se te daba tan mal.</span>"
 	class = "INGENERIA"
 	subclass = "CRAFT"
+	etiqueta = "SKILL"
+
+/datum/quirk/poor_aim
+	name = "Tirador PRO"
+	desc = "Eres un tirador experto."
+	value = -1
+	mob_trait = TRAIT_POOR_AIM
+	gain_text = "<span class='notice'>Tu punteria es muy mala.</span>"
+	lose_text = "<span class='notice'>Tu punteria aumenta!</span>"
+	class = "SEGURIDAD"
+	subclass = "DISPARAR"
 	etiqueta = "SKILL"

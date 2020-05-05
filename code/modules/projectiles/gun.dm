@@ -177,13 +177,11 @@
 	var/loop_counter = 0
 	//HISPATRAITS
 	var/dual_mod = 24 //para el trait de disparo dual
-	if(HAS_TRAIT(user, TRAIT_DUAL_SHOOTER)) // si tiene esto dipara mejor a dos armas
+	if(HAS_TRAIT(user, TRAIT_POOR_AIM) && ishuman(user)) //si no lo tiene no dispara bien
+		var/gun_type_weight = 1 + weapon_weight //el peso del arma puede ser cero
+		bonus_spread += dual_mod * gun_type_weight
+	if(HAS_TRAIT(user, TRAIT_DUAL_SHOOTER) && ishuman(user)) // si tiene esto dipara mejor a dos armas
 		dual_mod = dual_mod/2  //disparas con el doble de precision con dos armas si tienes este trait
-	if(!HAS_TRAIT(user, TRAIT_SHOOTER) && ishuman(user)) //si no lo tiene no dispara bien
-		var/gun_type_weight = weapon_weight //el peso del arma puede ser cero
-		if(weapon_weight == 0)
-			gun_type_weight = 1
-		bonus_spread += 20 * gun_type_weight
 	//FIN HISPATRAITS
 	if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user

@@ -67,7 +67,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 //TRAIT HISPANIA
 #define TRAIT_AGEUSIA					"ageusia"
 #define TRAIT_MECH_PILOT				"mech_pilot"
-#define TRAIT_SHOOTER					"shooter"
+#define TRAIT_POOR_AIM					"mala_punteria"
 #define TRAIT_NO_TOOLS					"no_herramientas"
 #define TRAIT_RESITENCIA_ALCOHOLICA		"no_borracheras"
 #define TRAIT_CIRUJANO					"cirujano"

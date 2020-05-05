@@ -3,7 +3,6 @@
 	. = ..()
 	if(visualsOnly)
 		return
-	H.add_quirk(/datum/quirk/shooter)
 	H.add_quirk(/datum/quirk/mechpilot)
 	H.add_quirk(/datum/quirk/podpilot)
 
@@ -12,7 +11,6 @@
 	. = ..()
 	if(visualsOnly)
 		return
-	H.add_quirk(/datum/quirk/shooter)
 	H.add_quirk(/datum/quirk/mechpilot)
 	H.add_quirk(/datum/quirk/podpilot)
 
@@ -21,7 +19,6 @@
 	. = ..()
 	if(visualsOnly)
 		return
-	H.add_quirk(/datum/quirk/shooter)
 	H.add_quirk(/datum/quirk/mechpilot)
 
 //BRIGDOC - JOB ESPECIAL
@@ -37,7 +34,6 @@
 	. = ..()
 	if(visualsOnly)
 		return
-	H.add_quirk(/datum/quirk/shooter)
 	H.add_quirk(/datum/quirk/borrachoexperto)
 	H.add_quirk(/datum/quirk/estomagofuerte)
 
@@ -47,4 +43,3 @@
 	if(visualsOnly)
 		return
 	H.add_quirk(/datum/quirk/podpilot)
-	H.add_quirk(/datum/quirk/shooter)
