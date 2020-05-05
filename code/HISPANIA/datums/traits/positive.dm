@@ -52,7 +52,7 @@
 /datum/quirk/dualshooter
 	name = "Vaquero"
 	desc = "Eres un tirador experto."
-	value = 1	//vale uno porque no es muy buena
+	value = 2
 	mob_trait = TRAIT_DUAL_SHOOTER
 	gain_text = "<span class='notice'>Por qué disperar con un arma cuando puedes disparar con dos?.</span>"
 	lose_text = "<span class='notice'>Al parecer disprar con dos armas no era tan facil despues de todo.</span>"
