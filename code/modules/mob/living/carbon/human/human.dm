@@ -1756,7 +1756,7 @@ Eyes need to have significantly high darksight to shine unless the mob has the X
 	. = ..()
 
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
-		if(HAS_TRAIT(user, TRAIT_GUNS_FOBIA))
+		if(HAS_TRAIT(src, TRAIT_GUNS_FOBIA))
 			to_chat("<span class='warning'>Tu fobia a las armas de fuego no te deja apretar el gatillo!</span>")
 			return FALSE
 		if(HULK in mutations)

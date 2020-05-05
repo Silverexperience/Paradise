@@ -39,6 +39,7 @@
 		return
 	H.add_quirk(/datum/quirk/shooter)
 	H.add_quirk(/datum/quirk/borrachoexperto)
+	H.add_quirk(/datum/quirk/estomagofuerte)
 
 //PILOTO - JOB ESPECIAL
 /datum/outfit/job/pilot/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

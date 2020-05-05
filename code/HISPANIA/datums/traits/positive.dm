@@ -74,7 +74,7 @@
 
 /datum/quirk/estomagofuerte
 	name = "Estomago fuerte"
-	desc = "Estas acostumbrado a los malos holres."
+	desc = "Estas acostumbrado a los malos olres."
 	value = 1	//vale uno porque es una tonteria
 	mob_trait = TRAIT_ESTOMAGO_FUERTE
 	gain_text = "<span class='notice'>Los olores fuertes no te afectan.</span>"

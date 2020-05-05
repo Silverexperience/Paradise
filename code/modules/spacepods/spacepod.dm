@@ -1044,11 +1044,12 @@
 	handlerelaymove(user, direction)
 
 /obj/spacepod/proc/handlerelaymove(mob/user, direction)
-	if(!HAS_TRAIT(user, TRAIT_POD_PILOT) && ishuman(user))
-		to_chat(user, "<span class='warning'>No logras hacer que esta maldita chatarra avance.</span>")
-		return FALSE
 	if(world.time < next_move)
 		return 0
+	if(!HAS_TRAIT(user, TRAIT_POD_PILOT) && ishuman(user))
+		if(prob(80))
+			to_chat(user, "<span class='warning'>No logras hacer que esta maldita chatarra avance.</span>")
+			return FALSE
 	var/moveship = 1
 	if(battery && battery.charge >= 1 && health && empcounter == 0)
 		src.dir = direction

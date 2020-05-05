@@ -299,9 +299,19 @@
 
 	var/move_result = 0
 	var/move_type = 0
-	if((internal_damage & MECHA_INT_CONTROL_LOST) || (ishuman(occupant) && !HAS_TRAIT(occupant, TRAIT_MECH_PILOT)))
+	if((internal_damage & MECHA_INT_CONTROL_LOST))
 		move_result = mechsteprand()
 		move_type = MECHAMOVE_RAND
+	else if(ishuman(occupant) && !HAS_TRAIT(occupant, TRAIT_MECH_PILOT)) //hispa trati
+		if(70)	//70% de las veces no tendras el control (con el pod es 80 pero con el por o te mueves o no esto es peor)
+			move_result = mechsteprand()
+			move_type = MECHAMOVE_RAND
+		else if(dir != direction)
+			move_result = mechturn(direction)
+			move_type = MECHAMOVE_TURN
+		else
+			move_result = mechstep(direction)
+			move_type = MECHAMOVE_STEP //fin hispatrait
 	else if(dir != direction)
 		move_result = mechturn(direction)
 		move_type = MECHAMOVE_TURN

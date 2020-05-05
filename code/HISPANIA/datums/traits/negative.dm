@@ -46,7 +46,22 @@
 	mob_trait = TRAIT_GUNS_FOBIA
 	gain_text = "<span class='danger'>Recuerdas eso... disparos, no de nuevo!</span>"
 	lose_text = "<span class='notice'>Pues disparar es hasta divertido, quien lo diria.</span>"
-	medical_record_text = "El paciente tiene un trauma severo con las armas de fuego."
 	class = "SEGURIDAD"
 	subclass = "DISPARAR"
 	etiqueta = "SKILL"
+
+/datum/quirk/manco
+	name = "Manco"
+	desc = "Hace mucho perdiste una mano en un accidente."
+	value = -1 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
+	gain_text = "<span class='danger'>Que le ha pasado a tu mano?</span>"
+	lose_text = "<span class='notice'>Pues parece que al final .</span>"
+	class = "SALUD"
+	subclass = "CUERPO"
+	etiqueta = "DISCAPACIDAD"
+
+/datum/quirk/manco/on_spawn() //these should only trigger when the character is being created for the first time, i.e. roundstart/latejoin
+	var/mob/living/carbon/human/H = quirk_holder
+	var/picked_hand = pick("l_hand", "r_hand")
+	var/obj/item/organ/external/M = H.get_organ(picked_hand)
+	qdel(M)
