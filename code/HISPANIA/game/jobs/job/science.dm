@@ -21,3 +21,5 @@
 		return
 	H.add_quirk(/datum/quirk/mechpilot)
 	H.add_quirk(/datum/quirk/cirujano)
+
+

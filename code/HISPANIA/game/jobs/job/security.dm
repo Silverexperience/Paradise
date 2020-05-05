@@ -46,3 +46,4 @@
 	if(visualsOnly)
 		return
 	H.add_quirk(/datum/quirk/podpilot)
+	H.add_quirk(/datum/quirk/shooter)
