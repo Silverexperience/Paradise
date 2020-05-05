@@ -75,6 +75,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DUAL_SHOOTER				"disparar con dos armas"
 #define TRAIT_GUNS_FOBIA				"fobia_a_las_armas"
 #define TRAIT_ESTOMAGO_FUERTE			"resistencia_a_olores"
+#define TRAIT_NO_CRAFT					"no_crafting"
 // FIN TRAIT HISPANIA
 
 // common trait sources

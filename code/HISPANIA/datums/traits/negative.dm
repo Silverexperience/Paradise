@@ -53,10 +53,10 @@
 /datum/quirk/manco
 	name = "Manco"
 	desc = "Hace mucho perdiste una mano en un accidente."
-	value = -1 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
+	value = -1
 	gain_text = "<span class='danger'>Que le ha pasado a tu mano?</span>"
 	lose_text = "<span class='notice'>Pues parece que al final .</span>"
-	class = "SALUD"
+	class = "MEDABAY"
 	subclass = "CUERPO"
 	etiqueta = "DISCAPACIDAD"
 
@@ -65,3 +65,14 @@
 	var/picked_hand = pick("l_hand", "r_hand")
 	var/obj/item/organ/external/M = H.get_organ(picked_hand)
 	qdel(M)
+
+/datum/quirk/nocraft
+	name = "Manco"
+	desc = "Hace mucho perdiste una mano en un accidente."
+	value = -1
+	mob_trait = TRAIT_NO_CRAFT
+	gain_text = "<span class='danger'>No podrias ni construir un barco de papel</span>"
+	lose_text = "<span class='notice'>Esto de constuir no se te daba tan mal.</span>"
+	class = "INGENERIA"
+	subclass = "CRAFT"
+	etiqueta = "SKILL"

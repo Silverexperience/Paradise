@@ -82,3 +82,35 @@
 	class = "SEGURIDAD"
 	subclass = "DISPARAR"
 	etiqueta = "SKILL"
+
+/datum/quirk/nutriimplant
+	name = "Estomago fuerte"
+	desc = "tienes implantado un implante de nutrición."
+	value = 1
+	gain_text = "<span class='notice'>Tienes un implante de nutricion en el cuerpo.</span>"
+	lose_text = "<span class='notice'>Sientes... hambre?.</span>"
+	class = "MEDBAY"
+	subclass = "COMIDA"
+	etiqueta = "IMPLANTE"
+
+/datum/quirk/nutriimplant/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/organ/internal/cyberimp/brain/clown_voice/implant = new
+	implant.insert(H)
+
+/datum/quirk/llamaazul
+	name = "Llama Azul"
+	desc = "Has sido entrenado en el antiguo arte de la llama azul."
+	value = 1
+	gain_text = "<span class='notice'>Tus movimientos de combate son mas azules y llameantes.</span>"
+	lose_text = "<span class='notice'>La llama azul te abanadona.</span>"
+	class = "SEGURIDAD"
+	subclass = "COMBATE"
+	etiqueta = "SKILL"
+
+/datum/quirk/llamaazul/add()
+	var/mob/living/carbon/human/H = quirk_holder
+    var/datum/martial_art/bscqc/theowo = new
+    theowo.teach(H)
+
+
