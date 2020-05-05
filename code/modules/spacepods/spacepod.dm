@@ -1049,8 +1049,8 @@
 	if(!HAS_TRAIT(user, TRAIT_POD_PILOT) && ishuman(user))
 		if(prob(80))
 			to_chat(user, "<span class='warning'>No logras hacer que esta maldita chatarra avance.</span>")
-		battery.use(1) //modifique esto porque yo soy el dios de las baterias, attentamente EVAN
-		next_move = world.time + move_delay
+			battery.use(1) //modifique esto porque yo soy el dios de las baterias, attentamente EVAN
+			next_move = world.time + move_delay
 			return FALSE
 	var/moveship = 1
 	if(battery && battery.charge >= 1 && health && empcounter == 0)

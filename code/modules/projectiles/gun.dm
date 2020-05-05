@@ -178,7 +178,7 @@
 	//HISPATRAITS
 	var/dual_mod = 24 //para el trait de disparo dual
 	if(weapon_weight >= WEAPON_MEDIUM)	//las armas ligeras pueden ser disparadas por cualquiera
-		if(!HAS_TRAIT(user, TRAIT_SHOOTER) && ishuman(user)) //si no lo tiene no dispara
+		if(!HAS_TRAIT(user, TRAIT_SHOOTER) && ishuman(user)) //si no lo tiene no dispara bien armas grandes
 			bonus_spread += dual_mod * weapon_weight
 	if(HAS_TRAIT(user, TRAIT_DUAL_SHOOTER) && ishuman(user)) // si tiene esto dipara mejor a dos armas
 		dual_mod = dual_mod/2  //disparas con el doble de precision con dos armas si tienes este trait
