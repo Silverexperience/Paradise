@@ -63,6 +63,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 //mob traits
 #define TRAIT_PACIFISM			"pacifism"
 #define TRAIT_WATERBREATH       "waterbreathing"
+//hispatraits
+#define TRAIT_AGEUSIA			"ageusia"
+//finhispatraits
 
 //TRAIT HISPANIA
 #define TRAIT_AGEUSIA					"ageusia"
