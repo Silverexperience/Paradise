@@ -63,13 +63,11 @@
 		return
 	H.add_quirk(/datum/quirk/mechpilot)
 
-/* deberia este tener este quirk? ya tienen más accesos que los mineros
 /datum/outfit/job/cargo_tech/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	if(visualsOnly)
 		return
 	H.add_quirk(/datum/quirk/mechpilot)
-*/
 
 // Indumentaria Cadaveres de TSF Discovery //
 /datum/outfit/sol_gov/solgov_no_gun

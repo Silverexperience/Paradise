@@ -52,7 +52,6 @@
 					M.put_in_l_hand(src)
 	else
 		return
-
 	add_fingerprint(M)
 
 /obj/item/bell/attack_hand(mob/user as mob)
@@ -72,7 +71,6 @@
 			s.set_up(12, 1, src)
 			S.electrocute_act(110, usr, 1)
 			s.start()
-
 	add_fingerprint(user)
 	return
 

@@ -5,7 +5,6 @@ respectivos sprites en las carpetas de iconos de hispania , es decir icons/hispa
 deberan tener una linea de codigo demas para que funcionen "hispania_icon = TRUE"*/
 
 //// by Kotiro22
-
 /obj/item/clothing/suit/storage/labcoat/cmolarge
 	name = "chief medical officer's large labcoat"
 	desc = "One blue and long labcoat."
