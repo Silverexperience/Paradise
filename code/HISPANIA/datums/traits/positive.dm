@@ -107,8 +107,8 @@
 	desc = "tienes implantado un implante de nutricion."
 	value = 1
 	gain_text = "<span class='notice'>Tienes un implante de nutricion en el cuerpo.</span>"
-	lose_text = "<span class='notice'>Sientes... hambre?.</span>"
-	class = "MEDBAY"
+	lose_text = "<span class='notice'>Sientes... ¿hambre?</span>"
+	class = "MED"
 	subclass = "COMIDA"
 	etiqueta = "IMPLANTE"
 
@@ -117,7 +117,67 @@
 	var/obj/item/organ/internal/cyberimp/chest/nutriment/implant = new
 	implant.insert(H)
 
-//IMPLANTES
+/datum/quirk/huddiagimplant
+	name = "Implante dianostichud"
+	desc = "tienes implantado un implante de diagnostico."
+	value = 1
+	gain_text = "<span class='notice'>Tienes un implante HUD de diagnostico en tus ojos.</span>"
+	lose_text = "<span class='notice'>¿Y mis cyber ojos?</span>"
+	class = "SCI"
+	subclass = "HUD"
+	etiqueta = "IMPLANTE"
+
+/datum/quirk/huddiagimplant/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/organ/internal/cyberimp/eyes/hud/diagnostic/implant = new
+	implant.insert(H)
+
+/datum/quirk/hudsecimplant
+	name = "Implante Sechud"
+	desc = "tienes implantado un implante HUDSec."
+	value = 1
+	gain_text = "<span class='notice'>Tienes un implante HUD de seguridad en tus ojos.</span>"
+	lose_text = "<span class='notice'>¿Y mis cyber ojos?</span>"
+	class = "SEC"
+	subclass = "HUD"
+	etiqueta = "IMPLANTE"
+
+/datum/quirk/hudsecimplant/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/organ/internal/cyberimp/eyes/hud/security/implant = new
+	implant.insert(H)
+
+/datum/quirk/hudmedimplant
+	name = "Implante Medhud"
+	desc = "tienes implantado un implante de HUDmed."
+	value = 1
+	gain_text = "<span class='notice'>Tienes un implante HUD medico en tus ojos.</span>"
+	lose_text = "<span class='notice'>¿Y mis cyber ojos?</span>"
+	class = "MEDBAY"
+	subclass = "HUD"
+	etiqueta = "IMPLANTE"
+
+/datum/quirk/hudmedimplant/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/organ/internal/cyberimp/eyes/hud/medical/implant = new
+	implant.insert(H)
+
+/datum/quirk/mesonimplant
+	name = "Implante Meson"
+	desc = "tienes implantado un implante de HUDmeson."
+	value = 1
+	gain_text = "<span class='notice'>Tienes un implante meson en tus ojos.</span>"
+	lose_text = "<span class='notice'>¿Y mis cyber ojos?.</span>"
+	class = "ENGI"
+	subclass = "HUD"
+	etiqueta = "IMPLANTE"
+
+/datum/quirk/mesonimplant/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/organ/internal/cyberimp/eyes/meson/implant = new
+	implant.insert(H)
+
+//mis- skills
 /datum/quirk/donaslove
 	name = "Amante de donas"
 	desc = "Te gustan tanto las donas que te curan."
