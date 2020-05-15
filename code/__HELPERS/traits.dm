@@ -76,6 +76,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_CIRUJANO					"cirujano"
 #define TRAIT_ESTOMAGO_FUERTE			"resistencia_a_olores"
 #define TRAIT_NO_CRAFT					"no_crafting"
+#define TRAIT_AMANTE_DE_DONAS			"donas_love"
 // FIN TRAIT HISPANIA
 
 // common trait sources

@@ -116,3 +116,15 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/organ/internal/cyberimp/chest/nutriment/implant = new
 	implant.insert(H)
+
+//IMPLANTES
+/datum/quirk/donaslove
+	name = "Amante de donas"
+	desc = "Te gustan tanto las donas que te curan."
+	value = 1
+	mob_trait = TRAIT_AMANTE_DE_DONAS
+	gain_text = "<span class='notice'>Uhmm, doonas...</span>"
+	lose_text = "<span class='notice'>Te has artado de comer donas.</span>"
+	class = "NONE"
+	subclass = "COMIDA"
+	etiqueta = "SKILL"

@@ -1191,6 +1191,7 @@
 #include "code\HISPANIA\game\jobs\job\medical.dm"
 #include "code\HISPANIA\game\jobs\job\science.dm"
 #include "code\HISPANIA\game\jobs\job\security.dm"
+#include "code\HISPANIA\game\jobs\job\supervisor.dm"
 #include "code\HISPANIA\game\jobs\job\support.dm"
 #include "code\HISPANIA\game\jobs\job_objectives\engineering.dm"
 #include "code\HISPANIA\game\jobs\job_objectives\hydroponics.dm"
