@@ -6,7 +6,6 @@
 	mob_trait = TRAIT_MECH_PILOT
 	gain_text = "<span class='notice'>Conducir un mecha no ha de ser complicado para ti.</span>"
 	lose_text = "<span class='notice'>Conducir un ripley es como andar en bicicleta decian.</span>"
-	medical_record_text = "El paciente solo habla de mechas y lo bien que puede conducirlos."
 	class = "CONDUCIR"
 	subclass = "MECHA"
 	etiqueta = "SKILL"

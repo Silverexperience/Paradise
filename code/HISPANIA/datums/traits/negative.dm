@@ -1,12 +1,11 @@
 //DISPARAR
 /datum/quirk/nonviolent
 	name = "Pacifista"
-	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
+	desc = "Repudias la violencia, de hecho nunca harias daño a nadie."
 	value = -2 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
 	mob_trait = TRAIT_PACIFISM
-	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
+	gain_text = "<span class='danger'>Repudias todo acto de violencia!</span>"
 	lose_text = "<span class='notice'>Puedes defenderte a ti mismo nuevamente.</span>"
-	medical_record_text = "El paciente es inusualmente pacifico y no hará nada que pueda dañar físicamente a otros."
 	class = "SEGURIDAD"
 	subclass = "DISPARAR"
 	etiqueta = "SKILL"
@@ -25,23 +24,22 @@
 //MISC - SKILLS
 /datum/quirk/notools
 	name = "Manos inutiles"
-	desc = "Tienes las mimsas habilidades de construccion que... no sabes constuir nada"
-	value = -1
+	desc = "El uso de herramientas se te dificulta."
+	value = -2
 	mob_trait = TRAIT_NO_TOOLS
 	gain_text = "<span class='danger'>Tus habilidades manuales son basura!</span>"
-	lose_text = "<span class='notice'>Al parecer esto de la mecanica no era tan dificil</span>"
-	medical_record_text = "Al paciente le cuesta realizar habilidades manuales."
+	lose_text = "<span class='notice'>Al parecer esto de la mecánica no era tan difícil</span>"
 	class = "INGENERIA"
 	subclass = "TOOLS"
 	etiqueta = "SKILL"
 
 /datum/quirk/nocraft
-	name = "Craftear, que es eso?"
+	name = "Desmañado"
 	desc = "No puedes craftear nada."
-	value = -1
+	value = -2
 	mob_trait = TRAIT_NO_CRAFT
-	gain_text = "<span class='danger'>No podrias ni craftear un barco de papel</span>"
-	lose_text = "<span class='notice'>Esto del maincra no se te daba tan mal.</span>"
+	gain_text = "<span class='danger'>No podrías ni craftear un barco de papel</span>"
+	lose_text = "<span class='notice'>Esto de craftear no se te daba tan mal.</span>"
 	class = "INGENERIA"
 	subclass = "CRAFT"
 	etiqueta = "SKILL"
@@ -49,9 +47,9 @@
 //GENETICA
 /datum/quirk/torpeza
 	name = "Torpeza"
-	desc = "Parece que eres tan torpe como nadie, debes tener algun cromosoma extra"
+	desc = "Parece que eres torpe, quizá tengas algun cromosoma extra"
 	value = -1
-	gain_text = "<span class='danger'>Eres evan, cuidado al caminar!</span>"
+	gain_text = "<span class='danger'>Eres torpe, cuidado al caminar!</span>"
 	lose_text = "<span class='notice'>Pues esto de trabajar no era nada del otro mundo.</span>"
 	class = "INGENERIA"
 	subclass = "TOOLS"
