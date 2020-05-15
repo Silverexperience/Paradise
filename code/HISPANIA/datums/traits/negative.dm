@@ -38,7 +38,7 @@
 	desc = "No puedes craftear nada."
 	value = -2
 	mob_trait = TRAIT_NO_CRAFT
-	gain_text = "<span class='danger'>No podrías ni craftear un barco de papel</span>"
+	gain_text = "<span class='danger'>No podrías ni craftear un barco de papel.</span>"
 	lose_text = "<span class='notice'>Esto de craftear no se te daba tan mal.</span>"
 	class = "INGENERIA"
 	subclass = "CRAFT"
@@ -47,7 +47,7 @@
 //GENETICA
 /datum/quirk/torpeza
 	name = "Torpeza"
-	desc = "Parece que eres torpe, quizá tengas algun cromosoma extra"
+	desc = "Parece que eres torpe, quizá tengas algun cromosoma extra."
 	value = -1
 	gain_text = "<span class='danger'>Eres torpe, cuidado al caminar!</span>"
 	lose_text = "<span class='notice'>Pues esto de trabajar no era nada del otro mundo.</span>"
@@ -66,7 +66,7 @@
 	desc = "Hace mucho perdiste una mano en un accidente."
 	value = -1
 	gain_text = "<span class='danger'>Que le ha pasado a tu mano?</span>"
-	lose_text = "<span class='notice'>Pues parece que al final .</span>"
+	lose_text = "<span class='notice'>Pues parece que al final.</span>"
 	class = "MEDABAY"
 	subclass = "CUERPO"
 	etiqueta = "DISCAPACIDAD"
