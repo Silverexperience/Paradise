@@ -114,5 +114,5 @@
 
 /datum/quirk/nutriimplant/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/organ/internal/cyberimp/chest/nutriment = new
+	var/obj/item/organ/internal/cyberimp/chest/nutriment/implant = new
 	implant.insert(H)
