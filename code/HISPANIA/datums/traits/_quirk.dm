@@ -84,9 +84,6 @@
 			return "None"
 		return dat.Join(", ")
 	else
-		for(var/V in roundstart_quirks)
-			var/datum/quirk/T = V
-			dat += T.medical_record_text
 		if(!dat.len)
 			return "None"
 		return dat.Join("<br>")
