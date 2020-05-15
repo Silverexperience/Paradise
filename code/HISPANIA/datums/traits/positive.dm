@@ -76,7 +76,7 @@
 
 /datum/quirk/shooter
 	name = "Tirador PRO"
-	desc = "Estás capacitado para manejrar armas grandes."
+	desc = "Estas capacitado para manejrar armas grandes."
 	value = 1
 	mob_trait = TRAIT_SHOOTER
 	gain_text = "<span class='notice'>Tu punteria aumenta!</span>"
@@ -104,7 +104,7 @@
 //IMPLANTES
 /datum/quirk/nutriimplant
 	name = "NutriImplante"
-	desc = "tienes implantado un implante de nutrición."
+	desc = "tienes implantado un implante de nutricion."
 	value = 1
 	gain_text = "<span class='notice'>Tienes un implante de nutricion en el cuerpo.</span>"
 	lose_text = "<span class='notice'>Sientes... hambre?.</span>"
@@ -114,5 +114,5 @@
 
 /datum/quirk/nutriimplant/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/organ/internal/cyberimp/brain/clown_voice/implant = new
+	var/obj/item/organ/internal/cyberimp/chest/nutriment = new
 	implant.insert(H)

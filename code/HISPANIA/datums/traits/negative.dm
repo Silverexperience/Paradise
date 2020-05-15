@@ -1,7 +1,7 @@
 //DISPARAR
 /datum/quirk/nonviolent
 	name = "Pacifista"
-	desc = "Repudias la violencia, de hecho nunca harias daño a nadie."
+	desc = "Repudias la violencia, de hecho nunca heririas a nadie."
 	value = -2 //esto te hace perder toda habilidad de combate asi que considero que vale por muchas habilidades
 	mob_trait = TRAIT_PACIFISM
 	gain_text = "<span class='danger'>Repudias todo acto de violencia!</span>"
@@ -34,7 +34,7 @@
 	etiqueta = "SKILL"
 
 /datum/quirk/nocraft
-	name = "Desmañado"
+	name = "Desmanado"
 	desc = "No puedes craftear nada."
 	value = -2
 	mob_trait = TRAIT_NO_CRAFT
@@ -47,7 +47,7 @@
 //GENETICA
 /datum/quirk/torpeza
 	name = "Torpeza"
-	desc = "Parece que eres torpe, quizá tengas algun cromosoma extra."
+	desc = "Parece que eres torpe, quiza tengas algun cromosoma extra."
 	value = -1
 	gain_text = "<span class='danger'>Eres torpe, cuidado al caminar!</span>"
 	lose_text = "<span class='notice'>Pues esto de trabajar no era nada del otro mundo.</span>"
