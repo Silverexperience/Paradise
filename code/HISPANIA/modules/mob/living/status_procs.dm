@@ -29,4 +29,7 @@
 	return FALSE
 
 /mob/living/proc/add_antag_quirks() //añade todos los quirks que un traidor necesita
-	return
+	add_quirk(/datum/quirk/mechpilot)
+	add_quirk(/datum/quirk/podpilot)
+	add_quirk(/datum/quirk/shooter)
+	add_quirk(/datum/quirk/cirujano)
