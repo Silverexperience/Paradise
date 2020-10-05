@@ -8,19 +8,13 @@
 	var/maximum_volume = 100
 	var/atom/my_atom = null
 	var/chem_temp = T20C
-	var/temperature_min = 0
-	var/temperature_max = 10000
 	var/list/datum/reagent/addiction_list = new/list()
 	var/list/addiction_threshold_accumulated = new/list()
 	var/flags
 	var/list/reagents_generated_per_cycle = new/list()
 
-/datum/reagents/New(maximum = 100, min_temp, max_temp)
+/datum/reagents/New(maximum = 100)
 	maximum_volume = maximum
-	if(min_temp)
-		temperature_min = min_temp
-	if(max_temp)
-		temperature_max = max_temp
 	if(!(flags & REAGENT_NOREACT))
 		START_PROCESSING(SSobj, src)
 	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
@@ -185,7 +179,7 @@
 	return amount
 
 /datum/reagents/proc/set_reagent_temp(new_temp = T0C, react = TRUE)
-	chem_temp = Clamp(new_temp, temperature_max, temperature_min)
+	chem_temp = new_temp
 	if(react)
 		temperature_react()
 		handle_reactions()
@@ -203,7 +197,7 @@
 	else if(exposed_temperature < chem_temp)
 		chem_temp -= change
 
-	chem_temp = max(min(chem_temp, temperature_max), temperature_min) //Cap for the moment.
+	chem_temp = max(min(chem_temp, 10000), 0) //Cap for the moment.
 	temperature_react()
 
 	handle_reactions()
@@ -305,7 +299,10 @@
 			if(R.addiction_stage < 5)
 				if(prob(5))
 					R.addiction_stage++
-			if(world.timeofday > R.last_addiction_dose) //time check so addiction act doesn't play over and over. Allows incremental dosages to work.
+			if(M.reagents.has_reagent(R.id))
+				R.last_addiction_dose = world.timeofday
+				R.addiction_stage = 1
+			else
 				switch(R.addiction_stage)
 					if(1)
 						update_flags |= R.addiction_act_stage1(M)
@@ -575,7 +572,7 @@
 			can_process = 1
 	return can_process
 
-/datum/reagents/proc/reaction(atom/A, method = REAGENT_TOUCH, volume_modifier = 1, show_message = TRUE)
+/datum/reagents/proc/reaction(atom/A, method = REAGENT_TOUCH, volume_modifier = 1)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
@@ -620,7 +617,7 @@
 				var/check = reaction_check(A, R)
 				if(!check)
 					continue
-				R.reaction_mob(A, method, R.volume * volume_modifier, show_message)
+				R.reaction_mob(A, method, R.volume * volume_modifier)
 			if("TURF")
 				R.reaction_turf(A, R.volume * volume_modifier)
 			if("OBJ")
@@ -638,7 +635,7 @@
 	if(total_volume + amount > maximum_volume) amount = (maximum_volume - total_volume) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
 	if(amount <= 0)
 		return 0
-	chem_temp = Clamp((chem_temp * total_volume + reagtemp * amount) / (total_volume + amount), temperature_min, temperature_max) //equalize with new chems
+	chem_temp = (chem_temp * total_volume + reagtemp * amount) / (total_volume + amount) //equalize with new chems
 
 	for(var/A in reagent_list)
 
@@ -876,8 +873,8 @@
 
 // Convenience proc to create a reagents holder for an atom
 // Max vol is maximum volume of holder
-/atom/proc/create_reagents(max_vol, min_temp, max_temp)
-	reagents = new /datum/reagents(max_vol, min_temp, max_temp)
+/atom/proc/create_reagents(max_vol)
+	reagents = new/datum/reagents(max_vol)
 	reagents.my_atom = src
 
 /proc/get_random_reagent_id()	// Returns a random reagent ID minus blacklisted reagents

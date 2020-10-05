@@ -11,9 +11,6 @@
 		var/propadjust = query.item[2]
 		var/jobmask = query.item[3]
 		var/ok = 0
-		if(!path || !ispath(path))
-			log_debug("Incorrect database entry found in table 'customuseritems' path value = [path], cuiPath is null. cuiCKey='[M.ckey]' AND (cuiRealName='[sanitizeSQL(M.real_name)]' OR cuiRealName='*'")
-			continue
 		if(jobmask != "*")
 			var/list/allowed_jobs = splittext(jobmask,",")
 			for(var/i = 1, i <= allowed_jobs.len, i++)

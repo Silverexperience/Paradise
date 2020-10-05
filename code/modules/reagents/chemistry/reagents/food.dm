@@ -343,8 +343,8 @@
 	return ..()
 
 /datum/reagent/consumable/garlic
-	name = "Garlic Paste"
-	id = "garlicpaste"
+	name = "Garlic Juice"
+	id = "garlic"
 	description = "Crushed garlic. Chefs love it, but it can make you smell bad."
 	color = "#FEFEFE"
 	taste_description = "garlic"

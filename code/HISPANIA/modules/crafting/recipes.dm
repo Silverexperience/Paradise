@@ -8,6 +8,7 @@
 	time = 15
 	category = CAT_MISC
 
+
 /datum/crafting_recipe/flowercrown
 	name = "Flower Crown"
 	result = /obj/item/clothing/head/flowercrown
@@ -30,6 +31,7 @@
  ////////////////
 //////Globos//////
  ////////////////
+
 /datum/crafting_recipe/balloon
 	name = "White balloon"
 	time = 10
@@ -58,10 +60,12 @@
 	reqs = list(/obj/item/stack/sheet/plastic = 5,
 		        /obj/item/stack/cable_coil = 5,
 		        /obj/item/reagent_containers/food/snacks/meat/corgi = 1)
+
 	category = CAT_DECORATIONS
 	subcategory = CAT_HOLIDAY
 
 ///Wooden Sword///
+
 /datum/crafting_recipe/woodensword
 	name = "wooden sword"
 	result = /obj/item/melee/woodensword
@@ -74,6 +78,7 @@
 	subcategory = CAT_WEAPON
 
 ///Silla de Oro///
+
 /datum/crafting_recipe/gold_wheel23
 	name = "Gold Wheel Chair"
 	result = /obj/structure/chair/wheelchair/gold

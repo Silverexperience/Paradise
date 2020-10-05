@@ -8,6 +8,7 @@
 		for(var/obj/O in T.contents)
 			if(O.level != 1)
 				continue
+
 			if(O.invisibility == 101)
 				O.invisibility = 0
 				O.alpha = 128
@@ -26,6 +27,7 @@
 						M.alpha = oldalpha
 
 		var/mob/living/M = locate() in T
+
 		if(M && M.invisibility == 2)
 			M.invisibility = 0
 			spawn(2)
@@ -134,7 +136,11 @@
 	item_state = "traysonbasic-t-ray"
 	desc = "Used by engineering staff to see underfloor objects such as cables and pipes."
 	origin_tech = "magnets=2;plasmatech=2;engineering=2"
+
 	modes = list(MODE_NONE = MODE_TRAY, MODE_TRAY = MODE_NONE)
+
+
+
 
 #undef MODE_NONE
 #undef MODE_MESON

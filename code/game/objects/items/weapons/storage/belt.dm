@@ -135,9 +135,8 @@
 		/obj/item/rad_laser,
 		/obj/item/sensor_device,
 		/obj/item/wrench/medical,
-		/obj/item/handheld_defibrillator,
-		/obj/item/reagent_containers/applicator,
 		/obj/item/pinpointer/crew,
+		/obj/item/handheld_defibrillator
 	)
 
 /obj/item/storage/belt/medical/surgery

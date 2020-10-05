@@ -27,6 +27,7 @@
 /mob/living/simple_animal/friendly/owl/emote(act, m_type = 1, message = null, force)
 	if(stat != CONSCIOUS)
 		return
+
 	var/on_CD = 0
 	act = lowertext(act)
 	switch(act)
@@ -34,8 +35,10 @@
 			on_CD = handle_emote_CD()
 		else
 			on_CD = 0
+
 	if(!force && on_CD == 1)
 		return
+
 	switch(act)
 		if("hoot")
 			message = "<B>[src]</B> [pick(emote_hear)]!"

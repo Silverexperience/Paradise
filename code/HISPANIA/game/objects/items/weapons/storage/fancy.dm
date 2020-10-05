@@ -35,6 +35,7 @@
 	slot_flags = SLOT_BELT
 	can_hold = list(/obj/item/flashlight/flare)
 
+
 /obj/item/storage/fancy/flare_box/full/New()
 	..()
 	for(var/i=1; i <= storage_slots; i++)

@@ -1,5 +1,5 @@
 // Agregamos los items aqui en base a su categoria
-// Aï¿½adimos los custom items a la DB directamente
+// Añadimos los custom items a la DB directamente
 
 ///////////////////////////////////////////////////////////////////////
 /////////////////////HISPANIA CUSTOM ITEMS/////////////////////
@@ -11,6 +11,7 @@
 
 
 //Codex Arcanum STARTS HERE
+
 /obj/item/toy/codex_arcanum // PapayasTehSkeletor: Codex Arcanun
 	name = "codex arcanum"
 	desc = "Old book with metal, frame you can't understand the language thats inside"
@@ -26,18 +27,8 @@
 		cooldown = world.time
 	else
 		to_chat(user, "<span class='notice'> You fear breaking [src] if you keep using it so you give it a rest</span>")
-//Codex Arcanum ENDS HERE
 
-//Gigi STARTS HERE
-/mob/living/simple_animal/mouse/white/gigi // Alejodbort: Gigi
-	name = "Gigi"
-	desc = "A simple white mouse named Gigi."
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
-	can_collar = FALSE
-	gold_core_spawnable = NO_SPAWN
-//Gigi ENDS HERE
+//Codex Arcanum ENDS HERE
 
 //////////////////////////////////
 //////////// Clothing ////////////
@@ -58,3 +49,4 @@
 //////////// Shoes ////////////
 
 //////////// Sets ////////////
+

@@ -332,12 +332,10 @@ GLOBAL_LIST_EMPTY(teleport_runes)
 			user.forceMove(get_turf(actual_selected_rune))
 		var/mob/living/carbon/human/H = user
 		if(user.z != T.z)
-			if(istype(H)) 
-				H.bleed(5)
+			H.bleed(5)
 			user.apply_damage(5, BRUTE)
 		else
-			if(istype(H)) 
-				H.bleed(rand(5,10))
+			H.bleed(rand(5,10))
 	else
 		fail_invoke()
 
@@ -834,8 +832,7 @@ GLOBAL_LIST_EMPTY(teleport_runes)
 		fail_invoke()
 		log_game("Summon Cultist rune failed - target in away mission")
 		return
-	var/hard_summon = (cultist_to_summon.reagents && cultist_to_summon.reagents.has_reagent("holywater")) || cultist_to_summon.restrained()
-	if(hard_summon && invokers.len < 3)
+	if((cultist_to_summon.reagents.has_reagent("holywater") || cultist_to_summon.restrained()) && invokers.len < 3)
 		to_chat(user, "<span class='cultitalic'>The summoning of [cultist_to_summon] is being blocked somehow! You need 3 chanters to counter it!</span>")
 		fail_invoke()
 		new /obj/effect/temp_visual/cult/sparks(get_turf(cultist_to_summon)) //observer warning
@@ -843,7 +840,7 @@ GLOBAL_LIST_EMPTY(teleport_runes)
 		return
 
 	..()
-	if(hard_summon)
+	if(cultist_to_summon.reagents.has_reagent("holywater") || cultist_to_summon.restrained())
 		summontime = 20
 
 	if(do_after(user, summontime, target = loc))

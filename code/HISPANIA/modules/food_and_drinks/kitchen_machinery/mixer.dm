@@ -1,3 +1,4 @@
+
 /obj/machinery/kitchen_machine/mixer
 	name = "mixer"
 	desc = "A high-speed mixer."
@@ -16,6 +17,7 @@
 /*******************
 *   Initialising
 ********************/
+
 /obj/machinery/kitchen_machine/mixer/New()
 	..()
 	component_parts = list()

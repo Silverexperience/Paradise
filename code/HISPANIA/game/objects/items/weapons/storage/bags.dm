@@ -1,6 +1,7 @@
 // -----------------------------
 //          Gadget Bag
 // -----------------------------
+
 /obj/item/storage/bag/component
 	icon = 'icons/hispania/obj/storage/storage.dmi'
 	icon_state = "component_bag"
@@ -19,9 +20,11 @@
 	icon_state = "component_bag_inge"
 	desc = "This bag with engineers colors can be used to store many machine components."
 
+
 // -----------------------------
 //          Kitchen Bag
 // -----------------------------
+
 /obj/item/storage/bag/kitchenbag
 	name = "kitchen bag"
 	icon = 'icons/hispania/obj/storage/storage.dmi'

@@ -18,10 +18,8 @@
 	var/self_recharge = 0 //does it self recharge, over time, or not?
 	var/ratingdesc = TRUE
 	var/grown_battery = FALSE // If it's a grown that acts as a battery, add a wire overlay to it.
-	//hispania vars
 	var/minorrecharging  = FALSE //controla la autorecarga cuando esta en un apc
-	var/overaynull = FALSE	//hispania, haceq que una bateria no tenga overays
-	//fin hispania vars
+	var/overaynull = FALSE
 
 /obj/item/stock_parts/cell/get_cell()
 	return src
@@ -49,14 +47,14 @@
 
 /obj/item/stock_parts/cell/process()
 	if(self_recharge)
-		if(minorrecharging) //esta es una variable hispana, se activa cuando la bateria esta en un apc
-			give(chargerate * 0.25 * GLOB.CELLRATE) //si la variable esta activada la bateria se carga más lento
+		if(minorrecharging)
+			give(chargerate * 0.25 * GLOB.CELLRATE)
 		else
 			give(chargerate * 0.25)
 	else
 		return PROCESS_KILL
 
-/obj/item/stock_parts/cell/update_icon() //todo esto fue cambiado por evan
+/obj/item/stock_parts/cell/update_icon()
 	overlays.Cut()
 	if(grown_battery)
 		overlays += image('icons/obj/power.dmi', "grown_wires")
@@ -189,7 +187,6 @@
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = 500
 	materials = list(MAT_GLASS = 40)
-	//rating = 2 //casi todos los rating fueron removidos por evan para crear un nuevo sitema energetico
 
 /obj/item/stock_parts/cell/crap/empty/New()
 	..()
@@ -213,7 +210,6 @@
 	origin_tech = null
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	materials = list(MAT_GLASS = 40)
-	//rating = 2.5 //ya no es necesario que todos tengan ranting
 
 /obj/item/stock_parts/cell/secborg/empty/New()
 	..()
@@ -223,7 +219,6 @@
 /obj/item/stock_parts/cell/pulse //200 pulse shots
 	name = "pulse rifle power cell"
 	maxcharge = 40000
-	//rating = 3 //obsoleto en hispanoia
 	chargerate = 1500
 
 /obj/item/stock_parts/cell/pulse/carbine //25 pulse shots
@@ -240,7 +235,6 @@
 	icon_state = "hcell"
 	maxcharge = 10000
 	materials = list(MAT_GLASS = 60)
-	//rating = 3 //no today, cambiado por evan
 	chargerate = 1500
 
 /obj/item/stock_parts/cell/high/plus
@@ -261,7 +255,6 @@
 	icon_state = "scell"
 	maxcharge = 20000
 	materials = list(MAT_GLASS = 300)
-	//rating = 4 // nel, papa
 	chargerate = 2000
 
 /obj/item/stock_parts/cell/super/empty/New()
@@ -275,7 +268,6 @@
 	icon_state = "hpcell"
 	maxcharge = 30000
 	materials = list(MAT_GLASS = 400)
-	//rating = 5 //hispania casi no usa esto a menos que se necesite
 	chargerate = 3000
 
 /obj/item/stock_parts/cell/hyper/empty/New()
@@ -290,7 +282,6 @@
 	icon_state = "bscell"
 	maxcharge = 40000
 	materials = list(MAT_GLASS = 600)
-	//rating = 6 //nel pastel
 	chargerate = 4000
 
 /obj/item/stock_parts/cell/bluespace/empty/New()
@@ -304,7 +295,7 @@
 	origin_tech =  "powerstorage=7"
 	maxcharge = 30000
 	materials = list(MAT_GLASS=1000)
-	rating = 12 //para que no tenga competencia
+	rating = 12
 	chargerate = 30000
 
 /obj/item/stock_parts/cell/infinite/use()
@@ -316,7 +307,6 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cell"
 	maxcharge = 50000
-	//rating = 12 //innecesario
 	ratingdesc = FALSE
 
 /obj/item/stock_parts/cell/infinite/abductor/update_icon()
@@ -333,7 +323,7 @@
 	maxcharge = 300
 	materials = list()
 	grown_battery = TRUE //it has the overlays for wires
-	rating = 0	//vale cero por su valor tecnologico, sigue siendo la mejor en cuanto a carga
+	rating = 0
 	overaynull = TRUE
 
 /obj/item/stock_parts/cell/high/slime
@@ -343,7 +333,7 @@
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "yellow slime extract"
 	materials = list()
-	rating = 4.5 //45000 de getrating más que la bluespace menos que la xenocell
+	rating = 4.5 //self-recharge makes these desirable, 45000 de getrating
 	self_recharge = TRUE // Infused slime cores self-recharge, over time
 	chargerate = 500
 	overaynull = TRUE
@@ -352,7 +342,7 @@
 	name = "\improper EMP-proof cell"
 	desc = "An EMP-proof cell."
 	maxcharge = 500
-	rating = 3 //mejor que una normal, debido a su tecnologia antie emp
+	rating = 3
 
 /obj/item/stock_parts/cell/emproof/empty/New()
 	..()
