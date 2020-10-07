@@ -5,6 +5,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	is_medical = 1
+	minimal_captain_character_age = 1
 	supervisors = "the captain"
 	department_head = list("Captain")
 	selection_color = "#ffddf0"
@@ -31,7 +32,7 @@
 	l_ear = /obj/item/radio/headset/heads/cmo
 	id = /obj/item/card/id/cmo
 	suit_store = /obj/item/flashlight/pen
-	l_hand = /obj/item/storage/firstaid/adv
+	l_hand = /obj/item/storage/firstaid/doctor
 	pda = /obj/item/pda/heads/cmo
 	backpack_contents = list(
 		/obj/item/melee/classic_baton/telescopic = 1
@@ -48,6 +49,8 @@
 	total_positions = 5
 	spawn_positions = 3
 	is_medical = 1
+	minimal_command_character_age = 1
+	minimal_captain_character_age = 1
 	supervisors = "the chief medical officer"
 	department_head = list("Chief Medical Officer")
 	selection_color = "#ffeef0"
@@ -69,7 +72,7 @@
 	l_ear = /obj/item/radio/headset/headset_med
 	id = /obj/item/card/id/medical
 	suit_store = /obj/item/flashlight/pen
-	l_hand = /obj/item/storage/firstaid/adv
+	l_hand = /obj/item/storage/firstaid/doctor
 	pda = /obj/item/pda/medical
 
 	backpack = /obj/item/storage/backpack/medic
@@ -83,6 +86,8 @@
 	total_positions = 1
 	spawn_positions = 1
 	is_medical = 1
+	minimal_command_character_age = 1
+	minimal_captain_character_age = 1
 	supervisors = "the chief medical officer"
 	department_head = list("Chief Medical Officer")
 	selection_color = "#ffeef0"
@@ -144,6 +149,8 @@
 	total_positions = 1
 	spawn_positions = 2
 	is_medical = 1
+	minimal_command_character_age = 1
+	minimal_captain_character_age = 1
 	supervisors = "the chief medical officer"
 	department_head = list("Chief Medical Officer")
 	selection_color = "#ffeef0"
@@ -178,6 +185,8 @@
 	total_positions = 1
 	spawn_positions = 2
 	is_medical = 1
+	minimal_command_character_age = 1
+	minimal_captain_character_age = 1
 	supervisors = "the chief medical officer"
 	department_head = list("Chief Medical Officer")
 	selection_color = "#ffeef0"
@@ -211,6 +220,8 @@
 	total_positions = 1
 	spawn_positions = 1
 	is_medical = 1
+	minimal_command_character_age = 1
+	minimal_captain_character_age = 1
 	supervisors = "the chief medical officer"
 	department_head = list("Chief Medical Officer")
 	selection_color = "#ffeef0"
@@ -246,6 +257,8 @@
 	total_positions = 1
 	spawn_positions = 1
 	is_medical = 1
+	minimal_command_character_age = 1
+	minimal_captain_character_age = 1
 	supervisors = "the chief medical officer"
 	department_head = list("Chief Medical Officer")
 	selection_color = "#ffeef0"
@@ -284,6 +297,8 @@
 	total_positions = 1
 	spawn_positions = 1
 	is_medical = 1
+	minimal_command_character_age = 1
+	minimal_captain_character_age = 1
 	supervisors = "the chief medical officer"
 	department_head = list("Chief Medical Officer")
 	selection_color = "#ffeef0"
