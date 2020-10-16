@@ -21,7 +21,7 @@
 	var/name_list = list("Aries", "Leo", "Sagittarius", "Taurus", "Virgo", "Capricorn", "Gemini", "Libra", "Aquarius", "Cancer", "Scorpio", "Pisces","God")
 
 /obj/item/nullrod/holy_tarot/attack_self(mob/living/user)
-	if(user.mind.isholy == FALSE)
+	if(!user.mind.isholy)
 		to_chat(user, "[ling_failure]")
 		user.adjustBruteLoss(15)
 		return
@@ -32,7 +32,7 @@
 	if(user.mind && (user.mind.changeling || user.mind.vampire))
 		to_chat(user, "[ling_failure]")
 		return
-	if(used == TRUE)
+	if(used)
 		to_chat(user, "[used_message]")
 		return
 	var/choice = alert(user, "[confirmation_message]",, "Yes", "No")
@@ -42,7 +42,7 @@
 	used = TRUE
 	to_chat(user, "[use_message]")
 	var/list/mob/dead/observer/candidates = pollCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_GUARDIAN, 0, 100)
-	var/mob/dead/observer/theghost = null
+	var/mob/dead/observer/theghost
 
 	if(candidates.len)
 		theghost = pick(candidates)
