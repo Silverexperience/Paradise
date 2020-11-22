@@ -1,36 +1,87 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
-
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the Lambda2 branch
-  push:
-    branches: [ Lambda2 ]
   pull_request:
-    branches: [ Lambda2 ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches:
+    - master
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  run_linters:
+    name: Run Linters
+    runs-on: ubuntu-18.04
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Setup Cache
+        uses: actions/cache@v2
+        with:
+          path: $HOME/SpacemanDMM
+          key: ${{ runner.os }}-spacemandmm
+      - name: Install Tools
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          bash tools/ci/install_build_deps.sh
+          bash tools/ci/install_dreamchecker.sh
+      - name: Run Linters
+        run: |
+          find . -name "*.json" -not -path "*/node_modules/*" -print0 | xargs -0 python3 ./tools/ci/json_verifier.py
+          tools/ci/build_nanoui.sh
+          tools/ci/build_tgui.sh
+          tools/ci/check_grep.sh
+          python3 tools/ci/check_line_endings.py
+          ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
+      - name: Annotate Lints
+        uses: yogstation13/DreamAnnotate@v1
+        if: always()
+        with:
+          outputFile: output-annotations.txt
+
+  compile_all_maps:
+    name: Compile All Maps
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Cache
+        uses: actions/cache@v2
+        with:
+          path: $HOME/BYOND
+          key: ${{ runner.os }}-byond
+      - name: Compile All Maps
+        run: |
+          tools/ci/install_byond.sh
+          source $HOME/BYOND/byond/bin/byondsetup
+          tools/ci/generate_maplist.sh
+          tools/ci/dm.sh -Mci_map_testing paradise.dme
+  unit_tests_and_sql:
+    name: Unit Tests + SQL Validation
+    runs-on: ubuntu-18.04
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306
+        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Cache
+        uses: actions/cache@v2
+        with:
+          path: $HOME/BYOND
+          key: ${{ runner.os }}-byond
+      - name: Setup & Validate DB
+        run: |
+          sudo systemctl start mysql
+          python3 tools/ci/generate_sql_scripts.py
+          tools/ci/validate_sql.sh
+      - name: Install RUST_G
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt update || true
+          sudo apt install libssl1.1:i386
+          bash tools/ci/install_rustg.sh
+      - name: Compile & Run Unit Tests
+        run: |
+          tools/ci/install_byond.sh
+          tools/ci/install_rustg.sh
+          source $HOME/BYOND/byond/bin/byondsetup
+          tools/ci/dm.sh -DCIBUILDING paradise.dme
+          tools/ci/run_server.sh
+
